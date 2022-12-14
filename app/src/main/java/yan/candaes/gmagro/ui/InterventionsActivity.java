@@ -1,5 +1,6 @@
 package yan.candaes.gmagro.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,7 +31,12 @@ public class InterventionsActivity extends AppCompatActivity {
         });
 
 
-        ((Button) findViewById(R.id.interBtnDeco)).setOnClickListener(v ->deconnexion() );
+        ((Button) findViewById(R.id.interBtnDeco)).setOnClickListener(v -> deconnexion());
+        ((Button) findViewById(R.id.interBtnAdd)).setOnClickListener(v ->
+        {
+            startActivity(new Intent(this, addInterventionActivity.class));
+        });
+
     }
 
     private void deconnexion() {
