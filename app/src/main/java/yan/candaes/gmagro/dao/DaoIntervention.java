@@ -65,4 +65,19 @@ public class DaoIntervention {
         };
         ws.execute("controller=inter&action=getA");
     }
+
+    public void deco(Delegate delegate) {
+        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
+            @Override
+            public void onPostExecute(String s) {
+                boolean wsRetour = false;
+                if (s != null) {
+                    wsRetour=true;
+
+                    }
+                delegate.WSRequestIsDone(wsRetour);
+            }
+        };
+        ws.execute("controller=deconnexion");
+    }
 }

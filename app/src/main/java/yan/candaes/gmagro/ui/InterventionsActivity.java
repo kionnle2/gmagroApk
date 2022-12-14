@@ -1,6 +1,7 @@
 package yan.candaes.gmagro.ui;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,29 @@ public class InterventionsActivity extends AppCompatActivity {
             @Override
             public void WSRequestIsDone(Object result) {
                 adaInter.notifyDataSetChanged();
+            }
+        });
+
+
+        ((Button) findViewById(R.id.interBtnDeco)).setOnClickListener(v ->deconnexion() );
+    }
+
+    private void deconnexion() {
+        DaoIntervention.getInstance().deco(new Delegate() {
+            @Override
+            public void WSRequestIsDone(Object result) {
+                if ((Boolean) result) finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        DaoIntervention.getInstance().deco(new Delegate() {
+            @Override
+            public void WSRequestIsDone(Object result) {
+                if ((Boolean) result) finish();
             }
         });
     }
