@@ -1,8 +1,17 @@
-package yan.candaes.gmagro.net;
+package yan.candaes.gmagro.tools;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import yan.candaes.gmagro.R;
 
 public class Tools {
 
@@ -30,4 +39,8 @@ public class Tools {
         }
         return "";
     }
+
+
+
+
 }

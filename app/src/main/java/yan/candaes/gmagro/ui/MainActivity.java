@@ -4,17 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.security.NoSuchAlgorithmException;
-
 import yan.candaes.gmagro.R;
 import yan.candaes.gmagro.dao.DaoUtilisateur;
 import yan.candaes.gmagro.dao.Delegate;
-import yan.candaes.gmagro.net.Tools;
+import yan.candaes.gmagro.tools.Tools;
 
 public class MainActivity extends AppCompatActivity {
 
