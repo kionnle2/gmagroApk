@@ -9,4 +9,9 @@ public class Utilisateur {
         this.nom = nom;
         this.prenom = prenom;
     }
+
+    @Override
+    public String toString() {
+        return nom +" "+prenom;
+    }
 }
