@@ -1,102 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:isScrollContainer="false"
+    android:nestedScrollingEnabled="true"
+    android:overScrollMode="ifContentScrolls"
+    android:persistentDrawingCache="scrolling"
+    app:layout_scrollEffect="compress"
     tools:context=".ui.addInterventionActivity">
 
-    <TextView
-        android:id="@+id/addInterTextViewCo"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Vous êtes connecté en tant que"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <Button
-        android:id="@+id/addInterBtnDeco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Deconnexion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/addInterSpinActivite"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/addInterSpinSO"
-        app:layout_constraintHorizontal_bias="0.941"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterTextViewCo" />
+            <TextView
+                android:id="@+id/addInterTextViewCo"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Vous êtes connecté en tant que"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/addInterSpinSO"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/SO_title"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterSpinActivite" />
+            <Button
+                android:id="@+id/addInterBtnDeco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Deconnexion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/addInterSpinCO"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterSpinSO" />
+            <Spinner
+                android:id="@+id/addInterSpinCO"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:minHeight="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterSpinSO"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <Spinner
-        android:id="@+id/addInterSpinCD"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterSpinSD" />
+            <Spinner
+                android:id="@+id/addInterSpinCD"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:minHeight="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterSpinSD"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <Spinner
-        android:id="@+id/addInterSpinHeureDebut"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterSpinCD" />
+            <Spinner
+                android:id="@+id/addInterSpinMachine"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:minHeight="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterSpinCO"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <Spinner
-        android:id="@+id/addInterSpinMachine"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterSpinCO" />
+            <Spinner
+                android:id="@+id/addInterSpinSO"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/SO_title"
+                android:minHeight="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureDebut" />
 
-    <Spinner
-        android:id="@+id/addInterSpinSD"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInterSpinActivite" />
+            <Spinner
+                android:id="@+id/addInterSpinActivite"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="35dp"
+                app:layout_constraintEnd_toEndOf="@+id/addInterSpinSO"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterTextViewCo"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/addInterBtnHeureDebut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Heure debut"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/addInterSpinSD"
+                app:layout_constraintTop_toBottomOf="@+id/addInterBtnDeco" />
+
+            <Spinner
+                android:id="@+id/addInterSpinSD"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:minHeight="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureDebut"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/addInterBtnHeureFin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:text="Heure de fin"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/addInterTvCommentaire"
+                app:layout_constraintTop_toBottomOf="@+id/addInterTvCommentaire" />
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/addInterTvCommentaire"
+                android:layout_width="388dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Commentaire"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterSpinMachine" />
+
+            <CheckBox
+                android:id="@+id/addInterCbPerte"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:text="Pertes"
+                app:layout_constraintEnd_toEndOf="@+id/addInterBtnHeureFin"
+                app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureFin" />
+
+            <CheckBox
+                android:id="@+id/addInterCbInterventionTerminee"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:text="Intervention terminée"
+                app:layout_constraintStart_toStartOf="@+id/addInterTvCommentaire"
+                app:layout_constraintTop_toBottomOf="@+id/addInterTvCommentaire" />
+
+            <CheckBox
+                android:id="@+id/addInterCbMachineArretee"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:text="Machine arrêtée"
+                app:layout_constraintStart_toStartOf="@+id/addInterCbInterventionTerminee"
+                app:layout_constraintTop_toBottomOf="@+id/addInterCbInterventionTerminee" />
+
+            <CheckBox
+                android:id="@+id/addInterCbChangementOrgane"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:text="Changement d'organe"
+                app:layout_constraintStart_toStartOf="@+id/addInterCbMachineArretee"
+                app:layout_constraintTop_toBottomOf="@+id/addInterCbMachineArretee" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
