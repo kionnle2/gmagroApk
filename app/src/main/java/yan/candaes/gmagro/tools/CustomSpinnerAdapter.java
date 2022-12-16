@@ -19,7 +19,7 @@ public class CustomSpinnerAdapter implements SpinnerAdapter {
 
     @Override
     public void unregisterDataSetObserver(DataSetObserver observer) {
-
+        observer.notify();
     }
 
     @Override
