@@ -1,17 +1,17 @@
 package yan.candaes.gmagro.tools;
 
-import android.view.LayoutInflater;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 
-import yan.candaes.gmagro.R;
+import kotlin.reflect.KClass;
+import yan.candaes.gmagro.ui.addInterventionActivity;
 
 public class Tools {
 
@@ -40,7 +40,27 @@ public class Tools {
         return "";
     }
 
+    public static View.OnClickListener TimePicker(Context ctx, TextView trigger) {
+        View.OnClickListener v = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
 
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ctx,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                                trigger.setText(hourOfDay + "h" + minute + "min");
+                            }
+                        }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        };
+    return v;
+    }
 
 
 }
