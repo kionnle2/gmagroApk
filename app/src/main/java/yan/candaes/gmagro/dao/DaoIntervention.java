@@ -33,7 +33,6 @@ public class DaoIntervention {
         lesCD = new ArrayList<>();
         lesSD = new ArrayList<>();
         lesMachines = new ArrayList<>();
-
     }
 
     public static DaoIntervention getInstance() {
@@ -172,7 +171,7 @@ public class DaoIntervention {
                 delegate.WSRequestIsDone(wsRetour);
             }
         };
-        ws.execute("controller=ascod&action=getALL");
+        ws.execute("controller=ascod&action=getAll");
     }
 
     public void getMachines(Delegate delegate) {
@@ -207,8 +206,6 @@ public class DaoIntervention {
                 delegate.WSRequestIsDone(wsRetour);
             }
         };
-        ws.execute("controller=machine&action=getA");
+        ws.execute("controller=machine&action=getAll");
     }
-
-
 }
