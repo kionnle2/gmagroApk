@@ -15,6 +15,17 @@ public class Utilisateur implements Serializable {
         this.uai = uai;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
 
     @Override
     public String toString() {

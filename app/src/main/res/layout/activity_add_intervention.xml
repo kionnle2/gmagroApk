@@ -5,17 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:isScrollContainer="false"
-    android:nestedScrollingEnabled="true"
-    android:overScrollMode="ifContentScrolls"
-    android:persistentDrawingCache="scrolling"
-    app:layout_scrollEffect="compress"
     tools:context=".ui.addInterventionActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:context=".ui.addInterventionActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -182,30 +178,30 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="1dp"
+                android:nestedScrollingEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addInterCbChangementOrgane" />
 
             <Spinner
                 android:id="@+id/addInterSpinnerLesInter"
-                android:layout_width="224dp"
-                android:layout_height="38dp"
+                android:layout_width="213dp"
+                android:layout_height="39dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:spinnerMode="dialog"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addInterListViewInter" />
 
-            <Button
-                android:id="@+id/addInterBtnTempsPasse"
-                android:layout_width="wrap_content"
-                android:layout_height="38dp"
-                android:text="temps passé"
-                app:layout_constraintBottom_toBottomOf="@+id/addInterSpinnerLesInter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.515"
-                app:layout_constraintStart_toEndOf="@+id/addInterSpinnerLesInter"
-                app:layout_constraintTop_toTopOf="@+id/addInterSpinnerLesInter" />
+<!--            <Button-->
+<!--                android:id="@+id/addInterBtnTempsPasse"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="38dp"-->
+<!--                android:text="temps passé"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/addInterSpinnerLesInter"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.515"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/addInterSpinnerLesInter"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/addInterSpinnerLesInter" />-->
 
             <Button
                 android:id="@+id/addInterBtnAjouterIntervenent"
@@ -226,6 +222,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addInterBtnAjouterIntervenent" />
+
+            <EditText
+                android:id="@+id/addInterTvTime"
+                android:layout_width="81dp"
+                android:layout_height="43dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/addInterSpinnerLesInter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/addInterSpinnerLesInter" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="65dp"
+                android:layout_height="41dp"
+                android:text="Temp en minutes :"
+                app:layout_constraintBottom_toBottomOf="@+id/addInterTvTime"
+                app:layout_constraintEnd_toStartOf="@+id/addInterTvTime"
+                app:layout_constraintStart_toEndOf="@+id/addInterSpinnerLesInter"
+                app:layout_constraintTop_toTopOf="@+id/addInterTvTime" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

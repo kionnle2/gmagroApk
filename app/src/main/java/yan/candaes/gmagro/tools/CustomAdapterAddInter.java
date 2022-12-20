@@ -11,13 +11,14 @@ import java.util.List;
 
 import yan.candaes.gmagro.R;
 import yan.candaes.gmagro.beans.Intervention;
+import yan.candaes.gmagro.beans.UtilisateurIntervenue;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapterAddInter extends BaseAdapter {
 
     private Context context;
-    private List<Intervention> list;
+    private List<UtilisateurIntervenue> list;
 
-    public CustomAdapter(Context context, List<Intervention> l) {
+    public CustomAdapterAddInter(Context context, List<UtilisateurIntervenue> l) {
         this.list = l;
         this.context = context;
 
@@ -29,30 +30,32 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public Intervention getItem(int position) {
+    public UtilisateurIntervenue getItem(int position) {
         return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return list.get(position).getId();
+       // return list.get(position).getId();
+        return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_inter, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_addinter, parent, false);
         }
-        Intervention i = list.get(position);
-        TextView tvId = convertView.findViewById(R.id.listInterNom);
-        TextView tvNom = convertView.findViewById(R.id.listInterTime) ;
+        UtilisateurIntervenue i = list.get(position);
+        TextView tvName = convertView.findViewById(R.id.listInterNom);
+        TextView tvTime = convertView.findViewById(R.id.listInterTime) ;
 //        TextView tvLC = convertView.findViewById(R.id.tvLC) ;
 
 
-        tvId.setText(i.getId() + "");
-        tvNom.setText("Machine :");
+        tvName.setText(i.toString());
+        tvTime.setText(""+i.getTime());
 //        tvLC.setText("Nanos: "+i.getT().getNano());
 
         return convertView;
     }
 }
+
