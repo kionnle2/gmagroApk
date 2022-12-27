@@ -1,14 +1,12 @@
 package yan.candaes.gmagro.beans;
 
-public class UtilisateurIntervenue extends Utilisateur{
+
+public class UtilisateurIntervenue {
     private int time;
-    public UtilisateurIntervenue(String login, String nom, String prenom, String uai, int time) {
-        super(login, nom, prenom, uai);
-        this.setTime(time);
-    }
+    private Utilisateur inter;
 
     public UtilisateurIntervenue(Utilisateur u, int time) {
-        super(u.getLogin(), u.getNom(), u.getPrenom(), u.getUai());
+       this.inter=u;
         this.time = time;
     }
 
@@ -16,8 +14,16 @@ public class UtilisateurIntervenue extends Utilisateur{
         this.time = time;
     }
 
+    public Utilisateur getInter() {
+        return inter;
+    }
+
     public int getTime() {
         return time;
     }
 
+    @Override
+    public String toString() {
+        return inter.toString();
+    }
 }

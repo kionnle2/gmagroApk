@@ -3,16 +3,21 @@ package yan.candaes.gmagro.beans;
 import java.io.Serializable;
 
 public class Utilisateur implements Serializable {
+    long id;
     String login;
     String nom;
     String prenom;
     String uai;
 
-    public Utilisateur(String login, String nom, String prenom, String uai) {
+    public Utilisateur(long id,String login, String nom, String prenom, String uai) {
+        this.id=id;
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
         this.uai = uai;
+    }
+
+    public Utilisateur(String login, String nom, String prenom, String uai) {
     }
 
     public String getLogin() {
@@ -34,5 +39,9 @@ public class Utilisateur implements Serializable {
 
     public String getUai() {
         return uai;
+    }
+
+    public long getId() {
+return id;
     }
 }

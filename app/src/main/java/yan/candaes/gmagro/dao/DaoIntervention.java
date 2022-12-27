@@ -1,17 +1,25 @@
 package yan.candaes.gmagro.dao;
 
 
+import android.util.Log;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import yan.candaes.gmagro.beans.Ascod;
 import yan.candaes.gmagro.beans.Intervention;
 import yan.candaes.gmagro.beans.Machine;
+import yan.candaes.gmagro.beans.UtilisateurIntervenue;
 import yan.candaes.gmagro.net.WSConnexionHTTPS;
+import yan.candaes.gmagro.ui.MainActivity;
 
 public class DaoIntervention {
 
@@ -89,7 +97,22 @@ public class DaoIntervention {
 
                             lesInterventions.add(
                                     new Intervention(
-                                            jo.getInt("id")
+                                            jo.getInt("id"),
+                                            jo.getString("dh_debut"),
+                                            jo.getString("dh_fin"),
+                                            jo.getString("commentaire"),
+                                            jo.getInt("temp_arret"),
+                                            false,//jo.getBoolean("changement_organe"),
+                                            false,//jo.getBoolean("perte"),
+                                            jo.getString("dh_creation"),
+                                            jo.getString("dh_derniere_maj"),
+                                            jo.getLong("intervenant_id"),
+                                            jo.getString("activite_code").charAt(0),
+                                            jo.getString("machine_code"),
+                                            jo.getString("cause_defaut_code"),
+                                            jo.getString("cause_objet_code"),
+                                            jo.getString("symptome_defaut_code"),
+                                            jo.getString("symptome_objet_code")
                                     )
                             );
                         }
@@ -208,4 +231,38 @@ public class DaoIntervention {
         };
         ws.execute("controller=machine&action=getAll");
     }
+
+    public void insertUneInterventions(String acti, String so, String sd, String co, String cd,
+                                       String mach, String comm, Boolean fin, Boolean arr,
+                                       Boolean org, Boolean per,int tArr, String hDeb, String hFin,
+                                       ArrayList<UtilisateurIntervenue> interLvList, Delegate delegate) throws IOException, JSONException {
+        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
+            @Override
+            public void onPostExecute(String s) {
+                boolean wsRetour = false;
+                if (s != null) {
+                    try {
+                        JSONObject jo = new JSONObject(s);
+                        wsRetour = jo.getBoolean("success");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                delegate.WSRequestIsDone(wsRetour);
+            }
+        };
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        Intervention inter = new Intervention(1,hDeb, hFin,comm,tArr, org, per,"now","now", MainActivity.logU.getId(), acti.charAt(0), mach, cd, co, sd, so);
+
+        JSONObject jSendI = new JSONObject(mapper.writeValueAsString(inter));
+        Log.d("jSendI.toString()", "insertUneInterventions: "+jSendI);
+        JSONArray jSendII = new JSONArray(mapper.writeValueAsString(interLvList));
+
+
+        ws.execute("controller=inter&action=add", jSendI.toString(), jSendII.toString());
+    }
+
+
 }

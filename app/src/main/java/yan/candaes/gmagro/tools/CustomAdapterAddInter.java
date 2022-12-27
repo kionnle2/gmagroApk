@@ -36,8 +36,7 @@ public class CustomAdapterAddInter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-       // return list.get(position).getId();
-        return 0;
+        return list.get(position).getInter().getId();
     }
 
     @Override

@@ -67,6 +67,7 @@ public  class DaoUtilisateur {
 
                         jo = jo.getJSONObject("response");
                          wsRetour = new Utilisateur(
+                                 jo.getInt("id"),
                                 jo.getString("login"),
                                 jo.getString("nom"),
                                 jo.getString("prenom"),
@@ -97,6 +98,7 @@ public  class DaoUtilisateur {
                         for (int i = 0; i < ja.length(); i++) {
                             jo = ja.getJSONObject(i);
                             lesIntervenents.add(new Utilisateur(
+                                    jo.getInt("id"),
                                     jo.getString("login"),
                                     jo.getString("nom"),
                                     jo.getString("prenom"),

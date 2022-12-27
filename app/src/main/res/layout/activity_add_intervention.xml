@@ -117,7 +117,7 @@
 
             <Button
                 android:id="@+id/addInterBtnHeureFin"
-                android:layout_width="wrap_content"
+                android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
@@ -141,10 +141,11 @@
                 android:id="@+id/addInterCbPerte"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
                 android:text="Pertes"
                 app:layout_constraintEnd_toEndOf="@+id/addInterBtnHeureFin"
-                app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureFin" />
+                app:layout_constraintTop_toBottomOf="@+id/addInterTvTempArret" />
 
             <CheckBox
                 android:id="@+id/addInterCbInterventionTerminee"
@@ -177,11 +178,12 @@
                 android:id="@+id/addInterListViewInter"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="12dp"
                 android:nestedScrollingEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addInterCbChangementOrgane" />
+                app:layout_constraintTop_toBottomOf="@+id/addInterCbPerte" />
 
             <Spinner
                 android:id="@+id/addInterSpinnerLesInter"
@@ -245,6 +247,17 @@
                 app:layout_constraintEnd_toStartOf="@+id/addInterTvTime"
                 app:layout_constraintStart_toEndOf="@+id/addInterSpinnerLesInter"
                 app:layout_constraintTop_toTopOf="@+id/addInterTvTime" />
+
+            <EditText
+                android:id="@+id/addInterTvTempArret"
+                android:layout_width="185dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="number"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureFin" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

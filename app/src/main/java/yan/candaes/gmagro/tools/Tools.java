@@ -54,7 +54,7 @@ public class Tools {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                                trigger.setText(hourOfDay + "h" + minute + "min");
+                                trigger.setText(hourOfDay + ":" + minute );
                             }
                         }, hour, minute, true);
                 timePickerDialog.show();

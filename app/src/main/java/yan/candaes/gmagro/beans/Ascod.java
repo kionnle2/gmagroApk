@@ -13,4 +13,8 @@ public class Ascod {
     public String toString() {
         return  libelle ;
     }
+
+    public String getCode() {
+        return code;
+    }
 }

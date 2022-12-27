@@ -17,6 +17,10 @@ public class Machine implements Serializable {
         this.type_machine_code = type_machine_code;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     @Override
     public String toString() {
         return code;

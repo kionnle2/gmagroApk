@@ -1,4 +1,3 @@
-
 package yan.candaes.gmagro.net;
 
 import android.os.AsyncTask;
@@ -16,17 +15,19 @@ import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class WSConnexionHTTPS extends AsyncTask<String,Integer,String> {
-    private final String base_url = "https://sio.jbdelasalle.com/~ycandaes/gmagro/ws.php?";
+public class WSConnexionHTTPS extends AsyncTask<String, Integer, String> {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static OkHttpClient client = null;
+    private final String base_url = "https://sio.jbdelasalle.com/~ycandaes/gmagro/ws.php?";
 
     public WSConnexionHTTPS() {
-        if( client==null) {
+        if (client == null) {
             try {
                 TrustManager[] trustAllCerts = new TrustManager[]{
                         new X509TrustManager() {
@@ -67,26 +68,43 @@ public class WSConnexionHTTPS extends AsyncTask<String,Integer,String> {
                     }
                 });
                 client = newBuilder.build();
-            }catch (Exception ex){
-                Log.e("WSHTTPS",ex.getMessage()) ;
+            } catch (Exception ex) {
+                Log.e("WSHTTPS", ex.getMessage());
             }
         }
     }
 
+
     @Override
-    protected String doInBackground(String... strings) {
-        Request request = new Request.Builder()
-                .url(base_url + strings[0])
-                .build();
-        Log.d("REQUESTWS WSWSWS",base_url + strings[0]) ;
-        try ( Response response = client.newCall(request).execute()) {
+    protected String doInBackground(String... strings) {// string[0] url,
+        RequestBody body = null;
+        Request request;
+        if (strings.length == 3) {                      //[1] json Inter [2] linst intervenentIntervention
+            body = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("newInter", strings[1])
+                    .addFormDataPart("lisII", strings[2])
+                    .build();
+             request = new Request.Builder()
+                    .url(base_url + strings[0])
+                    .post(body)
+                    .build();
+        }else{
+             request = new Request.Builder()
+                    .url(base_url + strings[0])
+                    .build();
+        }
+
+
+        Log.d("REQUESTWS WSWSWS", base_url + strings[0]);
+        try (Response response = client.newCall(request).execute()) {
             String resp = response.body().string();
-            Log.d("RESPONSEWS WSWSWS",resp) ;
-            return resp ;
+            Log.d("RESPONSEWS WSWSWS", resp);
+            return resp;
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d("WSWSWS",e.getMessage()) ;
+            Log.d("WSWSWS", e.getMessage());
         }
-        return null ;
+        return null;
     }
 }
