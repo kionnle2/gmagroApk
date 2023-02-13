@@ -31,7 +31,7 @@ import yan.candaes.gmagro.dao.Delegate;
 import yan.candaes.gmagro.tools.CustomAdapterAddInter;
 import yan.candaes.gmagro.tools.Tools;
 
-public class addInterventionActivity extends AppCompatActivity {
+public class AddInterventionActivity extends AppCompatActivity {
     static Boolean isInnit = false;
     ArrayAdapter adaActivite;
     ArrayAdapter adaSO;
@@ -59,9 +59,9 @@ public class addInterventionActivity extends AppCompatActivity {
 
 
         heureD = ((TextView) findViewById(R.id.addInterBtnHeureDebut));
-        heureD.setOnClickListener(Tools.TimePicker(addInterventionActivity.this, heureD));
+        heureD.setOnClickListener(Tools.TimePicker(AddInterventionActivity.this, heureD));
         heureF = ((TextView) findViewById(R.id.addInterBtnHeureFin));
-        heureF.setOnClickListener(Tools.TimePicker(addInterventionActivity.this, heureF));
+        heureF.setOnClickListener(Tools.TimePicker(AddInterventionActivity.this, heureF));
 //        tempP = ((TextView) findViewById(R.id.addInterBtnTempsPasse));
 //        tempP.setOnClickListener(Tools.TimePicker(addInterventionActivity.this, tempP));
 

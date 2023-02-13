@@ -1,6 +1,9 @@
 package yan.candaes.gmagro.beans;
 
-
+// CONFuSION : UTILISATEUR = INTERVENANT
+// REPRESENTE UTILISATEUR + TEMP PASSE
+// UTILE POUR REMPLIR LA TABLE INTERVENANT_INTERVENTION DE LA BDD
+// GRACE A LID UTILISATEUR, LE TEMP ET L'ID INTERVENTION
 public class UtilisateurIntervenue {
     private int time;
     private Utilisateur inter;

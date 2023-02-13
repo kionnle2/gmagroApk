@@ -2,6 +2,7 @@ package yan.candaes.gmagro.beans;
 
 import java.io.Serializable;
 
+// CONFuSION : UTILISATEUR = INTERVENANT
 public class Utilisateur implements Serializable {
     long id;
     String login;

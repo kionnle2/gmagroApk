@@ -7,6 +7,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 import yan.candaes.gmagro.R;
 import yan.candaes.gmagro.dao.DaoIntervention;
 import yan.candaes.gmagro.dao.Delegate;
@@ -34,8 +36,10 @@ public class InterventionsActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.interBtnDeco)).setOnClickListener(v -> deconnexion());
         ((Button) findViewById(R.id.interBtnAdd)).setOnClickListener(v ->
         {
-            startActivity(new Intent(this, addInterventionActivity.class));
+            startActivity(new Intent(this, AddInterventionActivity.class));
         });
+        ((ListView) findViewById(R.id.interListView)).setOnItemClickListener((parent, view, position, id) ->
+                startActivity(new Intent(this,ContinueInterventionActivity.class)));
 
     }
 

@@ -10,15 +10,15 @@ import android.widget.TextView;
 import java.util.List;
 
 import yan.candaes.gmagro.R;
-import yan.candaes.gmagro.beans.Intervention;
 import yan.candaes.gmagro.beans.UtilisateurIntervenue;
+
 // UTILE DANS AddInterventionActivity pour afficher les intervenants de la liste avec plus qu'un simple textview
-public class CustomAdapterAddInter extends BaseAdapter {
+public class CustomAdapterContinueInter extends BaseAdapter {
 
     private Context context;
     private List<UtilisateurIntervenue> list;
 
-    public CustomAdapterAddInter(Context context, List<UtilisateurIntervenue> l) {
+    public CustomAdapterContinueInter(Context context, List<UtilisateurIntervenue> l) {
         this.list = l;
         this.context = context;
 
