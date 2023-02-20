@@ -69,7 +69,8 @@ public class InterventionsActivity extends AppCompatActivity {
             }
         });
     }
-    /* TODO add new inter dans liste intervention au lieu de prendre dans la bdd*/
+    /* TODO add new inter dans liste intervention au lieu de prendre dans la bdd
+    *   et donc peut-etre retirer le startActivity for result*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
