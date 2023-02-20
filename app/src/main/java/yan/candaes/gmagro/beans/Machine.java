@@ -21,6 +21,10 @@ public class Machine implements Serializable {
         return code;
     }
 
+    public String getType_machine_code() {
+        return type_machine_code;
+    }
+
     @Override
     public String toString() {
         return code;

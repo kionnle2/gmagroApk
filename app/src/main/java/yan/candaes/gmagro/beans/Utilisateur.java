@@ -1,6 +1,7 @@
 package yan.candaes.gmagro.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 // CONFuSION : UTILISATEUR = INTERVENANT
 public class Utilisateur implements Serializable {
@@ -10,8 +11,8 @@ public class Utilisateur implements Serializable {
     String prenom;
     String uai;
 
-    public Utilisateur(long id,String login, String nom, String prenom, String uai) {
-        this.id=id;
+    public Utilisateur(long id, String login, String nom, String prenom, String uai) {
+        this.id = id;
         this.login = login;
         this.nom = nom;
         this.prenom = prenom;
@@ -43,6 +44,19 @@ public class Utilisateur implements Serializable {
     }
 
     public long getId() {
-return id;
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Utilisateur that = (Utilisateur) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

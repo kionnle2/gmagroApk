@@ -18,3 +18,9 @@ public class Ascod {
         return code;
     }
 }
+
+/* TODO passable, get scod  with union
+(select code lib "co"
+uso=ion
+select code lib "cd" ...)
+ */

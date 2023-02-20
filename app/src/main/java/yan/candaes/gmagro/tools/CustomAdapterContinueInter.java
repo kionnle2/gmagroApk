@@ -42,18 +42,29 @@ public class CustomAdapterContinueInter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_addinter, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_continueinter, parent, false);
         }
+
         UtilisateurIntervenue i = list.get(position);
-        TextView tvName = convertView.findViewById(R.id.listInterNom);
-        TextView tvTime = convertView.findViewById(R.id.listInterTime) ;
-//        TextView tvLC = convertView.findViewById(R.id.tvLC) ;
+        TextView tvName = convertView.findViewById(R.id.addInterName);
+        TextView tvTime = convertView.findViewById(R.id.addInterTime);
+        TextView addTime = convertView.findViewById(R.id.continueInterTextAddTime);
+        addTime.setOnEditorActionListener((v, actionId, event) -> {
+                    v.setText(v.getText().toString() + " min");
+                    return true;
+                }
+        );
+        addTime.setOnClickListener(v ->
+        {
+            if (addTime.getText().toString().contains(" min"))
+                addTime.setText(addTime.getText().toString().replace(" min", ""));
 
-
+        });
         tvName.setText(i.toString());
-        tvTime.setText(""+i.getTime());
-//        tvLC.setText("Nanos: "+i.getT().getNano());
-
+        tvTime.setText("Temps passé: " + i.getTime() + " min. Ajouter :");
+        if (i.getNewTime() != 0) {
+            addTime.setText("" + i.getNewTime()+" min");
+        }
         return convertView;
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import yan.candaes.gmagro.tools.CustomAdapter;
 
 public class InterventionsActivity extends AppCompatActivity {
     CustomAdapter adaInter;
+    final int AJOUT_FAIT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,15 @@ public class InterventionsActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.interBtnDeco)).setOnClickListener(v -> deconnexion());
         ((Button) findViewById(R.id.interBtnAdd)).setOnClickListener(v ->
         {
-            startActivity(new Intent(this, AddInterventionActivity.class));
+            startActivityForResult(new Intent(this, AddInterventionActivity.class), AJOUT_FAIT);
         });
         ((ListView) findViewById(R.id.interListView)).setOnItemClickListener((parent, view, position, id) ->
-                startActivity(new Intent(this,ContinueInterventionActivity.class)));
+                {
+                    Intent i = new Intent(this, ContinueInterventionActivity.class);
+                    i.putExtra("id", adaInter.getItem(position));
+                    startActivity(i);
+                }
+        );
 
     }
 
@@ -61,6 +68,19 @@ public class InterventionsActivity extends AppCompatActivity {
                 if ((Boolean) result) finish();
             }
         });
+    }
+    /* TODO add new inter dans liste intervention au lieu de prendre dans la bdd*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        DaoIntervention.getInstance().getLesInterventionsBDD(new Delegate() {
+            @Override
+            public void WSRequestIsDone(Object result) {
+                adaInter.notifyDataSetChanged();
+            }
+        });
+
     }
 }
 

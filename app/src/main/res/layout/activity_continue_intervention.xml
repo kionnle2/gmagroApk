@@ -11,12 +11,12 @@
         android:layout_width="70dp"
         android:layout_height="36dp"
         android:text="Temp en minutes :"
-        app:layout_constraintBottom_toBottomOf="@+id/addInterTvTime2"
-        app:layout_constraintEnd_toStartOf="@+id/addInterTvTime2"
-        app:layout_constraintTop_toTopOf="@+id/addInterTvTime2" />
+        app:layout_constraintBottom_toBottomOf="@+id/ContinueInterventionTimeByInter"
+        app:layout_constraintEnd_toStartOf="@+id/ContinueInterventionTimeByInter"
+        app:layout_constraintTop_toTopOf="@+id/ContinueInterventionTimeByInter" />
 
     <EditText
-        android:id="@+id/addInterTvTime2"
+        android:id="@+id/ContinueInterventionTimeByInter"
         android:layout_width="85dp"
         android:layout_height="48dp"
         android:layout_marginEnd="12dp"
@@ -24,66 +24,43 @@
         android:gravity="center"
         android:inputType="number"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner"
+        app:layout_constraintBottom_toBottomOf="@+id/ContinueInterventionSpinInter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner" />
+        app:layout_constraintTop_toTopOf="@+id/ContinueInterventionSpinInter" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/continueInterventionTVSO"
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_marginStart="92dp"
         android:layout_marginEnd="36dp"
         android:text="so"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/continueInterventionTVCO"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/continueInterventionUpdateIntervention"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Mèttre à jour l'intervention"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVNewCommentaire" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ContinueInterventionAddIntervenantBtnListIntervention"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ajouter"
-        app:layout_constraintEnd_toEndOf="@+id/addInterTvTime2"
+        app:layout_constraintEnd_toEndOf="@+id/ContinueInterventionTimeByInter"
         app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/addInterTvTime2" />
-
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkBox"
-        app:layout_constraintVertical_bias="0.555"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkBox2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/ContinueInterventionTimeByInter" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/continueInterTVNomInter"
         android:layout_width="167dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -94,30 +71,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/continueInterventionTVCD"
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="cd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCO" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/continueInterventionTVSD"
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
         android:text="sd"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/continueInterventionTVCD"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVSO" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/continueInterventionTVCO"
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_marginEnd="16dp"
@@ -134,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCommentaire" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -143,56 +120,56 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/continueInterTVNomInter"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/continueInterventionTVCommentaire"
         android:layout_width="237dp"
         android:layout_height="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVSD" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/continueInterventionCBInterventionTerminee"
         android:layout_width="199dp"
         android:layout_height="48dp"
         android:text="Intervention terminée"
-        app:layout_constraintStart_toStartOf="@+id/checkBox4"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+        app:layout_constraintStart_toStartOf="@+id/continueInterventoinCBMachineArretee"
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventoinCBMachineArretee" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/continueInterventoinCBMachineArretee"
         android:layout_width="199dp"
         android:layout_height="48dp"
         android:text="Machine arretée"
-        app:layout_constraintStart_toStartOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintStart_toStartOf="@+id/continueInterventionCBChangementOrgane"
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBChangementOrgane" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/continueInterventionCBPerte"
         android:layout_width="199dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Perte"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/ContinueInterventionSpinInter" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/continueInterventionCBChangementOrgane"
         android:layout_width="199dp"
         android:layout_height="48dp"
         android:layout_marginTop="2dp"
         android:text="Changement organe"
-        app:layout_constraintStart_toStartOf="@+id/checkBox3"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintStart_toStartOf="@+id/continueInterventionCBPerte"
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBPerte" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/continueInterventionTVNewCommentaire"
         android:layout_width="276dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
@@ -200,12 +177,12 @@
         android:hint="Commentaire"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBInterventionTerminee" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/ContinueInterventionSpinInter"
         android:layout_width="226dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -224,4 +201,28 @@
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/continueInterventionBtnInterFin"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:text="Heure Fin"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/continueInterventionCBInterventionTerminee"
+        app:layout_constraintEnd_toEndOf="@+id/continueInterventionTVTempArret"
+        app:layout_constraintTop_toTopOf="@+id/continueInterventionCBInterventionTerminee"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/continueInterventionTVTempArret"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="ajouter temp"
+        android:inputType="number"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/continueInterventoinCBMachineArretee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/continueInterventoinCBMachineArretee" />
 </androidx.constraintlayout.widget.ConstraintLayout>

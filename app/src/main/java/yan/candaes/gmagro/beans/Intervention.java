@@ -104,8 +104,31 @@ public class Intervention implements Serializable {
         return symptome_objet_code;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Intervention "+id;
+//    }
+
+
     @Override
     public String toString() {
-        return "Intervention "+id;
+        return "Intervention{" +
+                "id=" + id +
+                ", dh_debut='" + dh_debut + '\'' +
+                ", dh_fin='" + dh_fin + '\'' +
+                ", commentaire='" + commentaire + '\'' +
+                ", temp_arret=" + temp_arret +
+                ", changement_organe=" + changement_organe +
+                ", perte=" + perte +
+                ", dh_creation='" + dh_creation + '\'' +
+                ", dh_derniere_maj='" + dh_derniere_maj + '\'' +
+                ", intervenant_id=" + intervenant_id +
+                ", activite_code=" + activite_code +
+                ", machine_code='" + machine_code + '\'' +
+                ", cause_defaut_code='" + cause_defaut_code + '\'' +
+                ", cause_objet_code='" + cause_objet_code + '\'' +
+                ", symptome_defaut_code='" + symptome_defaut_code + '\'' +
+                ", symptome_objet_code='" + symptome_objet_code + '\'' +
+                '}';
     }
 }

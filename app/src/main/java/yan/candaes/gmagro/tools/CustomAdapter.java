@@ -44,13 +44,13 @@ public class CustomAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_inter, parent, false);
         }
         Intervention i = list.get(position);
-        TextView tvId = convertView.findViewById(R.id.listInterNom);
-        TextView tvNom = convertView.findViewById(R.id.listInterTime) ;
+        TextView tvId = convertView.findViewById(R.id.addInterName);
+        TextView tvNom = convertView.findViewById(R.id.addInterTime) ;
 //        TextView tvLC = convertView.findViewById(R.id.tvLC) ;
 
 
         tvId.setText(i.getId() + "");
-        tvNom.setText("Machine :");
+        tvNom.setText("Machine :" +i.getMachine_code());
 //        tvLC.setText("Nanos: "+i.getT().getNano());
 
         return convertView;

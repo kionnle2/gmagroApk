@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import yan.candaes.gmagro.R;
-import yan.candaes.gmagro.beans.Intervention;
 import yan.candaes.gmagro.beans.UtilisateurIntervenue;
 // UTILE DANS AddInterventionActivity pour afficher les intervenants de la liste avec plus qu'un simple textview
 public class CustomAdapterAddInter extends BaseAdapter {
@@ -45,8 +44,8 @@ public class CustomAdapterAddInter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_addinter, parent, false);
         }
         UtilisateurIntervenue i = list.get(position);
-        TextView tvName = convertView.findViewById(R.id.listInterNom);
-        TextView tvTime = convertView.findViewById(R.id.listInterTime) ;
+        TextView tvName = convertView.findViewById(R.id.addInterName);
+        TextView tvTime = convertView.findViewById(R.id.addInterTime) ;
 //        TextView tvLC = convertView.findViewById(R.id.tvLC) ;
 
 
