@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.ContinueInterventionActivity">
 
+    <Button
+        android:id="@+id/continueInterventionBtnDeco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Déconnexion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/continueInterventionTVCo"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Vous êtes connecté en tant que"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="70dp"
@@ -54,6 +74,7 @@
         android:id="@+id/ContinueInterventionAddIntervenantBtnListIntervention"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Ajouter"
         app:layout_constraintEnd_toEndOf="@+id/ContinueInterventionTimeByInter"
         app:layout_constraintStart_toStartOf="@+id/textView11"
@@ -66,9 +87,8 @@
         android:layout_marginTop="16dp"
         android:text="nom inter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCo" />
 
     <TextView
         android:id="@+id/continueInterventionTVCD"
@@ -154,7 +174,6 @@
         android:layout_width="199dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Perte"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ContinueInterventionSpinInter" />
@@ -185,17 +204,17 @@
         android:id="@+id/ContinueInterventionSpinInter"
         android:layout_width="226dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listViewCustomEditInter"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ListView
         android:id="@+id/listViewCustomEditInter"
-        android:layout_width="408dp"
-        android:layout_height="88dp"
+        android:layout_width="409dp"
+        android:layout_height="98dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"

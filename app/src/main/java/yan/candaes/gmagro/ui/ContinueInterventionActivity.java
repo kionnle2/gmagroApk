@@ -1,5 +1,6 @@
 package yan.candaes.gmagro.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +52,8 @@ public class ContinueInterventionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_continue_intervention);
 
 
+        ////////////////////////////////////    DECONNEXION   ////////////////////////////////////////
+findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexion());
         ////////////////////////////////////    GET INTENT   ////////////////////////////////////////
         Intervention intervention = (Intervention) this.getIntent().getSerializableExtra("id");
 
@@ -219,5 +222,17 @@ public class ContinueInterventionActivity extends AppCompatActivity {
 
     }
 
+    private void deconnexion () {
+        DaoIntervention.getInstance().deco(new Delegate() {
+            @Override
+            public void WSRequestIsDone(Object result) {
+                if ((Boolean) result) {
 
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                    startActivity( intent );
+                }
+            }
+        });
+    }
 }
