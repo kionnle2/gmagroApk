@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 import yan.candaes.gmagro.R;
 import yan.candaes.gmagro.beans.Ascod;
-import yan.candaes.gmagro.beans.Intervention;
 import yan.candaes.gmagro.beans.Machine;
 import yan.candaes.gmagro.beans.Utilisateur;
 import yan.candaes.gmagro.beans.UtilisateurIntervenue;
@@ -31,6 +30,7 @@ import yan.candaes.gmagro.dao.DaoIntervention;
 import yan.candaes.gmagro.dao.DaoUtilisateur;
 import yan.candaes.gmagro.dao.Delegate;
 import yan.candaes.gmagro.tools.CustomAdapterAddInter;
+import yan.candaes.gmagro.tools.DateAndTimePicker;
 import yan.candaes.gmagro.tools.Tools;
 
 public class AddInterventionActivity extends AppCompatActivity {
@@ -45,6 +45,10 @@ public class AddInterventionActivity extends AppCompatActivity {
     TextView heureF;
 //    TextView tempP;
 
+    //pour choisir la date et l'heure
+    DateAndTimePicker dateTimePick;
+
+
     ArrayAdapter adaLesIntervenants;
     CustomAdapterAddInter adaLvInter;
 
@@ -57,14 +61,25 @@ public class AddInterventionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_intervention);
 
+        heureD = ((TextView) findViewById(R.id.addInterBtnHeureDebut));
+        dateTimePick = new DateAndTimePicker(this, heureD);
+        dateTimePick.dateTimeAsk();
+        heureD.setOnClickListener(v -> {
+            dateTimePick = new DateAndTimePicker(this, heureD);
+            dateTimePick.dateTimeAsk();
+        });
+        heureF = ((TextView) findViewById(R.id.addInterBtnHeureFin));
+        heureF.setOnClickListener(v -> {
+            dateTimePick = new DateAndTimePicker(this, heureF);
+            dateTimePick.dateTimeAsk();
+        });
+        // innit recupere les listes acsod et intervenants et atache les adapteurs
         innit();
+
 //deconnexion
         findViewById(R.id.addInterBtnDeco).setOnClickListener(v -> deconnexion());
 
-        heureD = ((TextView) findViewById(R.id.addInterBtnHeureDebut));
-        heureD.setOnClickListener(Tools.TimePicker(AddInterventionActivity.this, heureD));
-        heureF = ((TextView) findViewById(R.id.addInterBtnHeureFin));
-        heureF.setOnClickListener(Tools.TimePicker(AddInterventionActivity.this, heureF));
+
 //        tempP = ((TextView) findViewById(R.id.addInterBtnTempsPasse));
 //        tempP.setOnClickListener(Tools.TimePicker(addInterventionActivity.this, tempP));
 
@@ -116,7 +131,6 @@ public class AddInterventionActivity extends AppCompatActivity {
             adaLvInter.notifyDataSetChanged();
             return true;
         });
-
 
 
         ((Button) findViewById(R.id.addInterBtnEnvoyerIntervention)).setOnClickListener(v -> {
@@ -225,15 +239,15 @@ public class AddInterventionActivity extends AppCompatActivity {
 
  */
 
-    private void deconnexion () {
+    private void deconnexion() {
         DaoIntervention.getInstance().deco(new Delegate() {
             @Override
             public void WSRequestIsDone(Object result) {
                 if ((Boolean) result) {
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-                    startActivity( intent );
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 }
             }
         });

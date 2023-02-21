@@ -29,6 +29,7 @@ import yan.candaes.gmagro.dao.DaoIntervention;
 import yan.candaes.gmagro.dao.DaoUtilisateur;
 import yan.candaes.gmagro.dao.Delegate;
 import yan.candaes.gmagro.tools.CustomAdapterContinueInter;
+import yan.candaes.gmagro.tools.DateAndTimePicker;
 import yan.candaes.gmagro.tools.Tools;
 
 public class ContinueInterventionActivity extends AppCompatActivity {
@@ -158,7 +159,10 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
         }
         // affiche le choix de l'heure de fin et du temp d'arret si la case est coché
         TextView heureF = findViewById(R.id.continueInterventionBtnInterFin);
-        heureF.setOnClickListener(Tools.TimePicker(this, heureF));
+        heureF.setOnClickListener(v -> {
+            DateAndTimePicker dateTimePick = new DateAndTimePicker(this, heureF);
+            dateTimePick.dateTimeAsk();
+        });
         CheckBox isTerminee = findViewById(R.id.continueInterventionCBInterventionTerminee);
         isTerminee.setOnClickListener(v -> {
             if (isTerminee.isChecked()) {
