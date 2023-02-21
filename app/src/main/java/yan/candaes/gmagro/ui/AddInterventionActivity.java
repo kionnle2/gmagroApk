@@ -148,6 +148,7 @@ public class AddInterventionActivity extends AppCompatActivity {
             String hDeb = ((TextView) findViewById(R.id.addInterBtnHeureDebut)).getText().toString();
             String hFin = null;
             int tempAr = 0;
+            boolean isOk=true;
             try {
                 // j'execute tout ce qui peux lever une exception enssemble pour arreter l'action en cours en une seul fois (action: post intervention)
                 if (fin) {
@@ -155,6 +156,9 @@ public class AddInterventionActivity extends AppCompatActivity {
                 }
                 if (arr) {
                     tempAr = Integer.parseInt(((TextView) findViewById(R.id.addInterTvTempArret)).getText().toString());
+                }
+                if(acti==""||so==""||sd==""||co==""||cd==""||mach==""){
+                    isOk=false;
                 }
                 DaoIntervention.getInstance().insertUneInterventions(hDeb, hFin, comm, tempAr, org, per, acti, mach, cd, co, sd, so, interLvList,
 
