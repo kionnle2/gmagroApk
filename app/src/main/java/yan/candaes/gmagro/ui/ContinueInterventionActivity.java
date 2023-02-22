@@ -176,10 +176,13 @@ public class ContinueInterventionActivity extends AppCompatActivity {
         isTerminee.setOnClickListener(v -> {
             if (isTerminee.isChecked()) {
                 heureF.setVisibility(View.VISIBLE);
+                DateAndTimePicker dateTimePick = new DateAndTimePicker(this, heureF);
+                dateTimePick.dateTimeAsk();
             } else {
                 heureF.setVisibility(View.INVISIBLE);
             }
         });
+
         CheckBox isPause = findViewById(R.id.continueInterventoinCBMachineArretee);
         isPause.setOnClickListener(v -> {
             if (isPause.isChecked()) {
@@ -292,7 +295,6 @@ public class ContinueInterventionActivity extends AppCompatActivity {
                     if (m.getCode().equals(code)) {
                         libReturn = m.getType_machine_code();
                     }
-                    Toast.makeText(this,m.getType_machine_code()+" "+code,Toast.LENGTH_LONG).show();
                 }
                 break;
         }
