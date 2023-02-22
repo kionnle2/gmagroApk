@@ -106,7 +106,7 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
             if (spinIntervenant.getCount() != 0) {
                 int newTime = Integer.parseInt(((TextView) findViewById(R.id.ContinueInterventionTimeByInter)).getText().toString());
                 Utilisateur u = (Utilisateur) spinIntervenant.getSelectedItem();
-                UtilisateurIntervenue ui = new UtilisateurIntervenue(u, 0);
+                UtilisateurIntervenue ui = new UtilisateurIntervenue(u, "0:0");
                 ui.setNewTime(newTime);
                 lvlInterInterList.add(ui);
 
@@ -122,7 +122,7 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
         lvInterInter.setOnItemLongClickListener((parent, view, position, id) -> {
 
             UtilisateurIntervenue i = (UtilisateurIntervenue) lvInterInter.getItemAtPosition(position);
-            if (i.getTime() == 0 ) {
+            if (i.getTime() == "0:0" ) {
                 Utilisateur u = i.getInter();
                 spinInterList.add(u);
                 lvlInterInterList.remove(position);

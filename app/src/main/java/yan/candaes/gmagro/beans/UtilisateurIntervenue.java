@@ -5,17 +5,17 @@ package yan.candaes.gmagro.beans;
 // UTILE POUR REMPLIR LA TABLE INTERVENANT_INTERVENTION DE LA BDD
 // GRACE A LID UTILISATEUR, LE TEMP ET L'ID INTERVENTION
 public class UtilisateurIntervenue {
-    private int time;
+    private String time;
     private Utilisateur inter;
     // nouveau utilisé uniquement dans ContinueIntervention lors de l'ajoue d'un intervenent dans la liste vieuw,
     //l'objectif et d'afficher le temp passé dans le text "Temp passé:X min" et le nouveau temp dan le PlainText si l'inter viens du spinner
     private int nouveauTemp = 0;
-    public UtilisateurIntervenue(Utilisateur u, int time) {
+    public UtilisateurIntervenue(Utilisateur u, String time) {
         this.inter=u;
         this.time = time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -23,7 +23,7 @@ public class UtilisateurIntervenue {
         return inter;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 

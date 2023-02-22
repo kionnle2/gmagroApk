@@ -149,17 +149,15 @@ public class DaoUtilisateur {
                             for (int i = 0; i < ja.length(); i++) {
                                 jo = ja.getJSONObject(i);
                                 //transform time dd:hh:mm to mm
-                                String[] time = jo.getString("tps_passe").split((":"));
-                                int formatTime = Integer.parseInt(time[0]) * 24 * 60 +
-                                        Integer.parseInt(time[1]) * 60 +
-                                        Integer.parseInt(time[2]);
+                                String  time = jo.getString("tps_passe");
+
 
                                 //lesIntersInter est une liste d'interInter
                                 //un interInter c'est un id d'intervenant/utilisateur, un id d'intervention et un temp passé
                                 // pour chaque id intervenant je recup l'objet entier dans la bdd
                                 lesIntersInter.add(new UtilisateurIntervenue(
                                         new Utilisateur((long) jo.getInt("id"), jo.getString("login"), jo.getString("nom"), jo.getString("prenom"), jo.getString("uai")),
-                                        formatTime));
+                                        time));
                             }
                             jo = new JSONObject(s);
                             wsRetour = jo.getBoolean("success");

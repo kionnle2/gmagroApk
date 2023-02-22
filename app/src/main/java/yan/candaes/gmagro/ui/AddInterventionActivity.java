@@ -43,6 +43,7 @@ public class AddInterventionActivity extends AppCompatActivity {
     TextView heureD;
     TextView heureF;
     Spinner tempP;
+    Spinner tempInter;
     ;
 
     //pour choisir la date et l'heure
@@ -91,6 +92,7 @@ public class AddInterventionActivity extends AppCompatActivity {
             }
             arraySpinner.add(heure + ":" + minute);
         }
+        //aussi utiliser pour tempInter
         ArrayAdapter<String> timeAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -118,6 +120,9 @@ public class AddInterventionActivity extends AppCompatActivity {
         });
 
         //ajout d'intervenant
+        tempInter = (Spinner) findViewById(R.id.addInterSpinnerInterTime);
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tempInter.setAdapter(timeAdapter);
         Spinner spinIntervenant = ((Spinner) findViewById(R.id.addInterSpinnerLesInter));
         spinIntervenant.setAdapter(adaLesIntervenants);
         ListView lvIntervenant = ((ListView) findViewById(R.id.addInterListViewInter));
@@ -126,7 +131,7 @@ public class AddInterventionActivity extends AppCompatActivity {
             Boolean isTimeOk = false;
 
             if (spinIntervenant.getCount() != 0) {
-                int t = Integer.parseInt(((TextView) findViewById(R.id.addInterTvTime)).getText().toString());
+                String t = (tempInter.getSelectedItem().toString());
                 Utilisateur u = (Utilisateur) spinIntervenant.getSelectedItem();
                 UtilisateurIntervenue ui = new UtilisateurIntervenue(u, t);
                 interLvList.add(ui);

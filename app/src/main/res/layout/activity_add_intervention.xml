@@ -186,7 +186,7 @@
 
             <Spinner
                 android:id="@+id/addInterSpinnerLesInter"
-                android:layout_width="213dp"
+                android:layout_width="197dp"
                 android:layout_height="39dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
@@ -224,36 +224,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addInterBtnAjouterIntervenent" />
 
-            <EditText
-                android:id="@+id/addInterTvTime"
-                android:layout_width="81dp"
-                android:layout_height="43dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:gravity="center"
-                android:inputType="number"
-                android:text="0"
-                app:layout_constraintBottom_toBottomOf="@+id/addInterSpinnerLesInter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/addInterSpinnerLesInter" />
-
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="65dp"
+                android:layout_width="56dp"
                 android:layout_height="41dp"
+                android:layout_marginTop="4dp"
                 android:text="Temp en minutes :"
-                app:layout_constraintBottom_toBottomOf="@+id/addInterTvTime"
-                app:layout_constraintEnd_toStartOf="@+id/addInterTvTime"
+                app:layout_constraintEnd_toStartOf="@+id/addInterSpinnerInterTime"
                 app:layout_constraintStart_toEndOf="@+id/addInterSpinnerLesInter"
-                app:layout_constraintTop_toTopOf="@+id/addInterTvTime" />
+                app:layout_constraintTop_toBottomOf="@+id/addInterListViewInter" />
 
             <Spinner
                 android:id="@+id/addInterSpinnerTempArret"
-                android:layout_width="176dp"
-                android:layout_height="43dp"
-                android:layout_marginEnd="12dp"
+                android:layout_width="144dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureFin" />
+
+            <Spinner
+                android:id="@+id/addInterSpinnerInterTime"
+                android:layout_width="112dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/addInterSpinnerLesInter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/addInterSpinnerLesInter"
+                app:layout_constraintVertical_bias="0.2" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
