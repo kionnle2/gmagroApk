@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -118,9 +119,30 @@ public class AddInterventionActivity extends AppCompatActivity {
                 findViewById(R.id.addInterSpinnerTempArret).setVisibility(View.INVISIBLE);
             }
         });
-
-        //ajout d'intervenant
+        //renome BTN Ajout avec l'inter selectionné et le temp
+        TextView btnAdd = (TextView)findViewById(R.id.addInterBtnAjouterIntervenent);
+        Spinner interAdd = ((Spinner)findViewById(R.id.addInterSpinnerLesInter));
         tempInter = (Spinner) findViewById(R.id.addInterSpinnerInterTime);
+   /*     interAdd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                btnAdd.setText("Ajouter: "+interAdd.getSelectedItem().toString()+ " "+interAdd.getSelectedItem().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        tempInter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                btnAdd.setText("Ajouter: "+interAdd.getSelectedItem().toString()+ " "+interAdd.getSelectedItem().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });*/
+        //ajout d'intervenant
+
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempInter.setAdapter(timeAdapter);
         Spinner spinIntervenant = ((Spinner) findViewById(R.id.addInterSpinnerLesInter));
@@ -256,7 +278,6 @@ public class AddInterventionActivity extends AppCompatActivity {
         ((Spinner) findViewById(R.id.addInterSpinCD)).setAdapter(adaCD);
         ((Spinner) findViewById(R.id.addInterSpinMachine)).setAdapter(adaMachine);
         isInnit = true;
-
     }
 
     /*
