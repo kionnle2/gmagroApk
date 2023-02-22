@@ -31,7 +31,6 @@ import yan.candaes.gmagro.dao.DaoUtilisateur;
 import yan.candaes.gmagro.dao.Delegate;
 import yan.candaes.gmagro.tools.CustomAdapterAddInter;
 import yan.candaes.gmagro.tools.DateAndTimePicker;
-import yan.candaes.gmagro.tools.Tools;
 
 public class AddInterventionActivity extends AppCompatActivity {
     static Boolean isInnit = false;
@@ -43,7 +42,8 @@ public class AddInterventionActivity extends AppCompatActivity {
     ArrayAdapter adaMachine;
     TextView heureD;
     TextView heureF;
-//    TextView tempP;
+    Spinner tempP;
+    ;
 
     //pour choisir la date et l'heure
     DateAndTimePicker dateTimePick;
@@ -78,10 +78,25 @@ public class AddInterventionActivity extends AppCompatActivity {
 
 //deconnexion
         findViewById(R.id.addInterBtnDeco).setOnClickListener(v -> deconnexion());
+//spinner temp machine arret
+        tempP = (Spinner) findViewById(R.id.addInterSpinnerTempArret);
+        ArrayList<String> arraySpinner = new ArrayList<>();
+        int minute = 0;
+        int heure = 0;
+        for (int i = 0; i < 32; i++) {
+            minute += 15;
+            if (minute == 60) {
+                minute = 0;
+                heure++;
+            }
+            arraySpinner.add(heure + ":" + minute);
+        }
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tempP.setAdapter(timeAdapter);
 
-
-//        tempP = ((TextView) findViewById(R.id.addInterBtnTempsPasse));
-//        tempP.setOnClickListener(Tools.TimePicker(addInterventionActivity.this, tempP));
+        //CheckBox et Heure Fin inter
 
         CheckBox isTerminee = ((CheckBox) findViewById(R.id.addInterCbInterventionTerminee));
         isTerminee.setOnClickListener(v -> {
@@ -96,9 +111,9 @@ public class AddInterventionActivity extends AppCompatActivity {
         CheckBox isPause = ((CheckBox) findViewById(R.id.addInterCbMachineArretee));
         isPause.setOnClickListener(v -> {
             if (isPause.isChecked()) {
-                findViewById(R.id.addInterTvTempArret).setVisibility(View.VISIBLE);
+                findViewById(R.id.addInterSpinnerTempArret).setVisibility(View.VISIBLE);
             } else {
-                findViewById(R.id.addInterTvTempArret).setVisibility(View.INVISIBLE);
+                findViewById(R.id.addInterSpinnerTempArret).setVisibility(View.INVISIBLE);
             }
         });
 
@@ -150,17 +165,17 @@ public class AddInterventionActivity extends AppCompatActivity {
             String hDeb = ((TextView) findViewById(R.id.addInterBtnHeureDebut)).getText().toString();
             String hFin = null;
             int tempAr = 0;
-            boolean isOk=true;
+            boolean isOk = true;
             try {
                 // j'execute tout ce qui peux lever une exception enssemble pour arreter l'action en cours en une seul fois (action: post intervention)
                 if (fin) {
                     hFin = ((TextView) findViewById(R.id.addInterBtnHeureFin)).getText().toString();
                 }
                 if (arr) {
-                    tempAr = Integer.parseInt(((TextView) findViewById(R.id.addInterTvTempArret)).getText().toString());
+                    tempAr = Integer.parseInt((String) tempP.getSelectedItem());
                 }
-                if(acti==""||so==""||sd==""||co==""||cd==""||mach==""){
-                    isOk=false;
+                if (acti == "" || so == "" || sd == "" || co == "" || cd == "" || mach == "") {
+                    isOk = false;
                 }
                 DaoIntervention.getInstance().insertUneInterventions(hDeb, hFin, comm, tempAr, org, per, acti, mach, cd, co, sd, so, interLvList,
 

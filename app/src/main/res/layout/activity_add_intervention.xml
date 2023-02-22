@@ -141,11 +141,10 @@
                 android:id="@+id/addInterCbPerte"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
                 android:text="Pertes"
                 app:layout_constraintEnd_toEndOf="@+id/addInterBtnHeureFin"
-                app:layout_constraintTop_toBottomOf="@+id/addInterTvTempArret" />
+                app:layout_constraintTop_toBottomOf="@+id/addInterSpinnerTempArret" />
 
             <CheckBox
                 android:id="@+id/addInterCbInterventionTerminee"
@@ -248,14 +247,11 @@
                 app:layout_constraintStart_toEndOf="@+id/addInterSpinnerLesInter"
                 app:layout_constraintTop_toTopOf="@+id/addInterTvTime" />
 
-            <EditText
-                android:id="@+id/addInterTvTempArret"
-                android:layout_width="185dp"
-                android:layout_height="38dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="number"
-                android:visibility="invisible"
+            <Spinner
+                android:id="@+id/addInterSpinnerTempArret"
+                android:layout_width="176dp"
+                android:layout_height="43dp"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addInterBtnHeureFin" />
 
