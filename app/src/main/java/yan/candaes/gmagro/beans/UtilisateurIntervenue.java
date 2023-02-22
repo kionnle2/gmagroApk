@@ -9,7 +9,7 @@ public class UtilisateurIntervenue {
     private Utilisateur inter;
     // nouveau utilisé uniquement dans ContinueIntervention lors de l'ajoue d'un intervenent dans la liste vieuw,
     //l'objectif et d'afficher le temp passé dans le text "Temp passé:X min" et le nouveau temp dan le PlainText si l'inter viens du spinner
-    private int nouveauTemp = 0;
+    private int nouveauTempPosition = 0;
     public UtilisateurIntervenue(Utilisateur u, String time) {
         this.inter=u;
         this.time = time;
@@ -27,11 +27,11 @@ public class UtilisateurIntervenue {
         return time;
     }
 
-    public void setNewTime(int t){
-        this.nouveauTemp=t;
+    public void setNouveauTempPosition(int t){
+        this.nouveauTempPosition=t;
     }
-    public int getNewTime() {
-        return nouveauTemp;
+    public int getNouveauTempPosition() {
+        return nouveauTempPosition;
     }
 
     @Override

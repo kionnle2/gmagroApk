@@ -44,8 +44,8 @@ public class CustomAdapterAddInter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_addinter, parent, false);
         }
         UtilisateurIntervenue i = list.get(position);
-        TextView tvName = convertView.findViewById(R.id.addInterName);
-        TextView tvTime = convertView.findViewById(R.id.addInterTime) ;
+        TextView tvName = convertView.findViewById(R.id.ocntinueInterAddInterName);
+        TextView tvTime = convertView.findViewById(R.id.continueInterTvInterTime) ;
 //        TextView tvLC = convertView.findViewById(R.id.tvLC) ;
 
 

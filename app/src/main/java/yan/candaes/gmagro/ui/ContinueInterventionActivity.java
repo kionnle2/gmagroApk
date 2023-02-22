@@ -32,7 +32,6 @@ import yan.candaes.gmagro.dao.DaoUtilisateur;
 import yan.candaes.gmagro.dao.Delegate;
 import yan.candaes.gmagro.tools.CustomAdapterContinueInter;
 import yan.candaes.gmagro.tools.DateAndTimePicker;
-import yan.candaes.gmagro.tools.Tools;
 
 public class ContinueInterventionActivity extends AppCompatActivity {
     //pour le spinner, j'ai la liste des intervenents possible et l'adapter
@@ -83,7 +82,10 @@ public class ContinueInterventionActivity extends AppCompatActivity {
                 }
             }
         });
-        ////////////////////////////////////    SPINNER   ///////////////////////////////////////////
+        ////////////////////////////////////    SPINNER   //////////////////////////////////////////
+        /////////////////////////////    SPINNER  ANCIEN INTER   ///////////////////////////////////
+
+
         adaLesIntervenants = new ArrayAdapter(this, android.R.layout.simple_list_item_1, spinInterList);
         Spinner spinIntervenant = ((Spinner) findViewById(R.id.ContinueInterventionSpinInter));
         spinIntervenant.setAdapter(adaLesIntervenants);
@@ -102,15 +104,35 @@ public class ContinueInterventionActivity extends AppCompatActivity {
                 adaLesIntervenants.notifyDataSetChanged();
             }
         });
+        ////////////////////////////////    SPINNER NOUVEAU  ///////////////////////////////////////
+
+        Spinner tempInterSpin = (Spinner) findViewById(R.id.continueInterventionSpinnerTimeByInter);
+        ArrayList<String> arraySpinner = new ArrayList<>();
+        int minute = 0;
+        int heure = 0;
+        arraySpinner.add("0:0");
+        for (int i = 0; i < 32; i++) {
+            minute += 15;
+            if (minute == 60) {
+                minute = 0;
+                heure++;
+            }
+            arraySpinner.add(heure + ":" + minute);
+        }
+        //aussi utiliser pour tempInter
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tempInterSpin.setAdapter(timeAdapter);
         /////////////////////////     DEPLACEMENT INTERVENENT LISTVIEW     /////////////////////////
         ///////////////////////////     AJOUTE INTERVENENT LISTVIEW      ///////////////////////////
 
         ((Button) findViewById(R.id.ContinueInterventionAddIntervenantBtnListIntervention)).setOnClickListener(v -> {
             if (spinIntervenant.getCount() != 0) {
-                int newTime = Integer.parseInt(((TextView) findViewById(R.id.ContinueInterventionTimeByInter)).getText().toString());
+                int newTime = ((Spinner) findViewById(R.id.continueInterventionSpinnerTimeByInter)).getSelectedItemPosition();
                 Utilisateur u = (Utilisateur) spinIntervenant.getSelectedItem();
                 UtilisateurIntervenue ui = new UtilisateurIntervenue(u, "0:0");
-                ui.setNewTime(newTime);
+                ui.setNouveauTempPosition(newTime);
                 lvlInterInterList.add(ui);
 
                 int i = spinIntervenant.getSelectedItemPosition();
@@ -138,7 +160,7 @@ public class ContinueInterventionActivity extends AppCompatActivity {
         ////////////////////////////    INNIT   CHECKBOX / TEXTVIEW     ////////////////////////////
         /* TODO on peut remplacer les listes d'ascod par des dictionnaires ou mettre les libelle au lieu des codes dans le constructeur de intervention*/
 
-        // code machine, type machine, date heure début, la photo du type de machine.
+        // TEXTVIEW
         String stringTop = intervention.getMachine_code() + " "
                 + ascodAndTypeMachineCodeToLibelle(intervention.getMachine_code(), "m") + " "
                 + intervention.getDh_debut() + " "
@@ -149,6 +171,8 @@ public class ContinueInterventionActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.continueInterventionTVCO)).setText(ascodAndTypeMachineCodeToLibelle(intervention.getCause_objet_code(), "co"));
         ((TextView) findViewById(R.id.continueInterventionTVCD)).setText(ascodAndTypeMachineCodeToLibelle(intervention.getCause_defaut_code(), "cd"));
         ((TextView) findViewById(R.id.continueInterventionTVCommentaire)).setText(intervention.getCommentaire());
+
+        //CHECKBOX
         if (intervention.getPerte()) {
             ((CheckBox) findViewById(R.id.continueInterventionCBPerte)).setChecked(true);
             findViewById(R.id.continueInterventionCBPerte).setEnabled(false);

@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/addInterName"
+        android:id="@+id/ocntinueInterAddInterName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -19,16 +19,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/addInterTime"
+        android:id="@+id/continueInterTvInterTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="time"
-        app:layout_constraintBottom_toBottomOf="@+id/addInterName"
+        app:layout_constraintBottom_toBottomOf="@+id/ocntinueInterAddInterName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.015"
-        app:layout_constraintStart_toEndOf="@+id/addInterName"
-        app:layout_constraintTop_toTopOf="@+id/addInterName"
+        app:layout_constraintStart_toEndOf="@+id/ocntinueInterAddInterName"
+        app:layout_constraintTop_toTopOf="@+id/ocntinueInterAddInterName"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

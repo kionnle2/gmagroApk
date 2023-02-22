@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import yan.candaes.gmagro.R;
@@ -44,28 +47,40 @@ public class CustomAdapterContinueInter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_item_continueinter, parent, false);
         }
+        //fill spinner
+        Spinner spinAddTime = (Spinner) convertView.findViewById(R.id.continueInterterSpinnerAddTime);
+        ArrayList<String> arraySpinner = new ArrayList<>();
 
-        UtilisateurIntervenue i = list.get(position);
-        TextView tvName = convertView.findViewById(R.id.addInterName);
-        TextView tvTime = convertView.findViewById(R.id.addInterTime);
-        TextView addTime = convertView.findViewById(R.id.continueInterTextAddTime);
-        addTime.setOnEditorActionListener((v, actionId, event) -> {
-                    v.setText(v.getText().toString() + " min");
-                    return true;
-                }
-        );
-        addTime.setOnClickListener(v ->
-        {
-            if (addTime.getText().toString().contains(" min"))
-                addTime.setText(addTime.getText().toString().replace(" min", ""));
+        int minute = 0;
+        int heure = 0;
+        arraySpinner.add("0:0");
+        for (int i = 0; i < 32; i++) {
+            minute += 15;
+            if (minute == 60) {
+                minute = 0;
+                heure++;
+            }
 
-        });
-        tvName.setText(i.toString());
-        tvTime.setText("Temps passé: " + i.getTime() + " min. Ajouter :");
-        if (i.getNewTime() != 0) {
-            addTime.setText("" + i.getNewTime()+" min");
+            arraySpinner.add(heure + ":" + minute);
         }
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,arraySpinner);
+
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinAddTime.setAdapter(timeAdapter);
+
+
+
+        UtilisateurIntervenue inter = list.get(position);
+        TextView tvName = convertView.findViewById(R.id.ocntinueInterAddInterName);
+        TextView tvTime = convertView.findViewById(R.id.continueInterTvInterTime);
+        spinAddTime.setSelection(inter.getNouveauTempPosition());
+
+        tvName.setText(inter.toString());
+        tvTime.setText("Temps passé: " + inter.getTime() + " min.");
+
+
         return convertView;
+
     }
 }
 
