@@ -87,6 +87,8 @@ public class AddInterventionActivity extends AppCompatActivity {
         isTerminee.setOnClickListener(v -> {
             if (isTerminee.isChecked()) {
                 heureF.setVisibility(View.VISIBLE);
+                dateTimePick = new DateAndTimePicker(this, heureF);
+                dateTimePick.dateTimeAsk();
             } else {
                 heureF.setVisibility(View.INVISIBLE);
             }
@@ -237,9 +239,11 @@ public class AddInterventionActivity extends AppCompatActivity {
 
     }
 
-    /*  TODO deco
-        TODO spinner
-        TODO heure en DateHeure
+    /*
+        TODO spinner Machine arret
+        TODO spinner temp inter
+        TODO btn ajout rename info inter
+        TODO btn annuler
 
  */
 
