@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import yan.candaes.gmagro.R;
+import yan.candaes.gmagro.beans.Ascod;
 import yan.candaes.gmagro.beans.Intervention;
+import yan.candaes.gmagro.beans.Machine;
 import yan.candaes.gmagro.beans.Utilisateur;
 import yan.candaes.gmagro.beans.UtilisateurIntervenue;
 import yan.candaes.gmagro.dao.DaoIntervention;
@@ -40,7 +42,8 @@ public class ContinueInterventionActivity extends AppCompatActivity {
     ArrayAdapter adaLesIntervenants;
     //adapter ListView
     CustomAdapterContinueInter adaInter;
-    //list pour spinner
+
+    //liste pour spinner
     ArrayList<Utilisateur> spinInterList = new ArrayList<>();
     //liste pour listView
     ArrayList<UtilisateurIntervenue> lvlInterInterList = new ArrayList<>();
@@ -54,7 +57,7 @@ public class ContinueInterventionActivity extends AppCompatActivity {
 
 
         ////////////////////////////////////    DECONNEXION   ////////////////////////////////////////
-findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexion());
+        findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexion());
         ////////////////////////////////////    GET INTENT   ////////////////////////////////////////
         Intervention intervention = (Intervention) this.getIntent().getSerializableExtra("id");
 
@@ -122,7 +125,7 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
         lvInterInter.setOnItemLongClickListener((parent, view, position, id) -> {
 
             UtilisateurIntervenue i = (UtilisateurIntervenue) lvInterInter.getItemAtPosition(position);
-            if (i.getTime() == "0:0" ) {
+            if (i.getTime() == "0:0") {
                 Utilisateur u = i.getInter();
                 spinInterList.add(u);
                 lvlInterInterList.remove(position);
@@ -133,12 +136,18 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
             return true;
         });
         ////////////////////////////    INNIT   CHECKBOX / TEXTVIEW     ////////////////////////////
-        //add data from intervention
-        ((TextView) findViewById(R.id.continueInterTVNomInter)).setText(intervention.getId() + " " + intervention.getMachine_code() + " " + intervention.getDh_debut() + " " + intervention.getDh_derniere_maj());
-        ((TextView) findViewById(R.id.continueInterventionTVSO)).setText(intervention.getSymptome_objet_code());
-        ((TextView) findViewById(R.id.continueInterventionTVSD)).setText(intervention.getSymptome_defaut_code());
-        ((TextView) findViewById(R.id.continueInterventionTVCO)).setText(intervention.getCause_objet_code());
-        ((TextView) findViewById(R.id.continueInterventionTVCD)).setText(intervention.getCause_defaut_code());
+        /* TODO on peut remplacer les listes d'ascod par des dictionnaires ou mettre les libelle au lieu des codes dans le constructeur de intervention*/
+
+        // code machine, type machine, date heure début, la photo du type de machine.
+        String stringTop = intervention.getMachine_code() + " "
+                + ascodAndTypeMachineCodeToLibelle(intervention.getMachine_code(), "m") + " "
+                + intervention.getDh_debut() + " "
+                + intervention.getDh_derniere_maj();
+        ((TextView) findViewById(R.id.continueInterTVNomInter)).setText(stringTop);
+        ((TextView) findViewById(R.id.continueInterventionTVSO)).setText(ascodAndTypeMachineCodeToLibelle(intervention.getSymptome_objet_code(), "so"));
+        ((TextView) findViewById(R.id.continueInterventionTVSD)).setText(ascodAndTypeMachineCodeToLibelle(intervention.getSymptome_defaut_code(), "sd"));
+        ((TextView) findViewById(R.id.continueInterventionTVCO)).setText(ascodAndTypeMachineCodeToLibelle(intervention.getCause_objet_code(), "co"));
+        ((TextView) findViewById(R.id.continueInterventionTVCD)).setText(ascodAndTypeMachineCodeToLibelle(intervention.getCause_defaut_code(), "cd"));
         ((TextView) findViewById(R.id.continueInterventionTVCommentaire)).setText(intervention.getCommentaire());
         if (intervention.getPerte()) {
             ((CheckBox) findViewById(R.id.continueInterventionCBPerte)).setChecked(true);
@@ -148,7 +157,7 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
             ((CheckBox) findViewById(R.id.continueInterventionCBChangementOrgane)).setChecked(true);
             findViewById(R.id.continueInterventionCBChangementOrgane).setEnabled(false);
         }
-        if (intervention.getTemp_arret() != 0) {
+        if (intervention.getTemp_arret() != "0" && intervention.getTemp_arret() != "0:0") {
             CheckBox cbArret = findViewById(R.id.continueInterventoinCBMachineArretee);
             cbArret.setChecked(true);
             findViewById(R.id.continueInterventoinCBMachineArretee).setEnabled(false);
@@ -226,17 +235,68 @@ findViewById(R.id.continueInterventionBtnDeco).setOnClickListener(v -> deconnexi
 
     }
 
-    private void deconnexion () {
+    private void deconnexion() {
         DaoIntervention.getInstance().deco(new Delegate() {
             @Override
             public void WSRequestIsDone(Object result) {
                 if ((Boolean) result) {
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
-                    startActivity( intent );
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 }
             }
         });
     }
+
+    private String ascodAndTypeMachineCodeToLibelle(String code, String type) {
+        String libReturn = "ERROR";
+        switch (type) {
+            case "a":
+                for (Ascod a : DaoIntervention.getInstance().getLesActivites()) {
+                    if (a.getCode().equals(code)) {
+                        libReturn = a.toString();
+                    }
+                }
+                break;
+            case "co":
+                for (Ascod co : DaoIntervention.getInstance().getLesCO()) {
+                    if (co.getCode().equals(code)) {
+                        libReturn = co.toString();
+                    }
+                }
+                break;
+            case "cd":
+                for (Ascod cd : DaoIntervention.getInstance().getLesCD()) {
+                    if (cd.getCode().equals(code)) {
+                        libReturn = cd.toString();
+                    }
+                }
+                break;
+            case "so":
+                for (Ascod so : DaoIntervention.getInstance().getLesSO()) {
+                    if (so.getCode().equals(code)) {
+                        libReturn = so.toString();
+                    }
+                }
+                break;
+            case "sd":
+                for (Ascod sd : DaoIntervention.getInstance().getLesSD()) {
+                    if (sd.getCode().equals(code)) {
+                        libReturn = sd.toString();
+                    }
+                }
+                break;
+            case "m":
+                for (Machine m : DaoIntervention.getInstance().getLesMachines()) {
+                    if (m.getCode().equals(code)) {
+                        libReturn = m.getType_machine_code();
+                    }
+                    Toast.makeText(this,m.getType_machine_code()+" "+code,Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
+        return libReturn;
+    }
 }
+/* TODO */

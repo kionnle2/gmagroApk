@@ -8,7 +8,7 @@ public class Intervention implements Serializable {
     String dh_debut;
     String dh_fin;
     String commentaire;
-    int temp_arret;
+    String temp_arret;
     Boolean changement_organe;
     Boolean perte;
     String dh_creation;
@@ -20,8 +20,9 @@ public class Intervention implements Serializable {
     String cause_objet_code;
     String symptome_defaut_code;
     String symptome_objet_code;
+    String type_machine;
 
-    public Intervention(int id, String dh_debut, String dh_fin, String commentaire, int temp_arret, Boolean changement_organe, Boolean perte, String dh_creation, String dh_derniere_maj, long intervenant_id, char activite_code, String machine_code, String cause_defaut_code, String cause_objet_code, String symptome_defaut_code, String symptome_objet_code) {
+    public Intervention(int id, String dh_debut, String dh_fin, String commentaire, String temp_arret, Boolean changement_organe, Boolean perte, String dh_creation, String dh_derniere_maj, long intervenant_id, char activite_code, String machine_code, String cause_defaut_code, String cause_objet_code, String symptome_defaut_code, String symptome_objet_code, String type_machine) {
         this.id = id;
         this.dh_debut = dh_debut;
         this.dh_fin = dh_fin;
@@ -38,6 +39,7 @@ public class Intervention implements Serializable {
         this.cause_objet_code = cause_objet_code;
         this.symptome_defaut_code = symptome_defaut_code;
         this.symptome_objet_code = symptome_objet_code;
+        this.type_machine = type_machine;
     }
 
     public int getId() {
@@ -52,11 +54,15 @@ public class Intervention implements Serializable {
         return dh_fin;
     }
 
+    public String getType_machine() {
+        return type_machine;
+    }
+
     public String getCommentaire() {
         return commentaire;
     }
 
-    public int getTemp_arret() {
+    public String getTemp_arret() {
         return temp_arret;
     }
 
@@ -112,23 +118,6 @@ public class Intervention implements Serializable {
 
     @Override
     public String toString() {
-        return "Intervention{" +
-                "id=" + id +
-                ", dh_debut='" + dh_debut + '\'' +
-                ", dh_fin='" + dh_fin + '\'' +
-                ", commentaire='" + commentaire + '\'' +
-                ", temp_arret=" + temp_arret +
-                ", changement_organe=" + changement_organe +
-                ", perte=" + perte +
-                ", dh_creation='" + dh_creation + '\'' +
-                ", dh_derniere_maj='" + dh_derniere_maj + '\'' +
-                ", intervenant_id=" + intervenant_id +
-                ", activite_code=" + activite_code +
-                ", machine_code='" + machine_code + '\'' +
-                ", cause_defaut_code='" + cause_defaut_code + '\'' +
-                ", cause_objet_code='" + cause_objet_code + '\'' +
-                ", symptome_defaut_code='" + symptome_defaut_code + '\'' +
-                ", symptome_objet_code='" + symptome_objet_code + '\'' +
-                '}';
+        return "Intervention{" + "id=" + id + ", dh_debut='" + dh_debut + '\'' + ", dh_fin='" + dh_fin + '\'' + ", commentaire='" + commentaire + '\'' + ", temp_arret=" + temp_arret + ", changement_organe=" + changement_organe + ", perte=" + perte + ", dh_creation='" + dh_creation + '\'' + ", dh_derniere_maj='" + dh_derniere_maj + '\'' + ", intervenant_id=" + intervenant_id + ", activite_code=" + activite_code + ", machine_code='" + machine_code + '\'' + ", cause_defaut_code='" + cause_defaut_code + '\'' + ", cause_objet_code='" + cause_objet_code + '\'' + ", symptome_defaut_code='" + symptome_defaut_code + '\'' + ", symptome_objet_code='" + symptome_objet_code + '\'' + '}';
     }
 }

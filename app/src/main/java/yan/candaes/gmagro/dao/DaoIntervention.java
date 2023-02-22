@@ -108,8 +108,23 @@ public class DaoIntervention {
                                 perte = jo.getInt("perte") == 1;
                             } catch (JSONException e) {
                             }
-                            lesInterventions.add(new Intervention(jo.getInt("id"), jo.getString("dh_debut"), jo.getString("dh_fin"), jo.getString("commentaire"), jo.getInt("temp_arret"), changeOrgane,
-                                    perte, jo.getString("dh_creation"), jo.getString("dh_derniere_maj"), jo.getLong("intervenant_id"), jo.getString("activite_code").charAt(0), jo.getString("machine_code"), jo.getString("cause_defaut_code"), jo.getString("cause_objet_code"), jo.getString("symptome_defaut_code"), jo.getString("symptome_objet_code")));
+                            lesInterventions.add(new Intervention(jo.getInt("id"),
+                                    jo.getString("dh_debut"),
+                                    jo.getString("dh_fin"),
+                                    jo.getString("commentaire"),
+                                    jo.getString("temp_arret"),
+                                    changeOrgane,
+                                    perte,
+                                    jo.getString("dh_creation"),
+                                    jo.getString("dh_derniere_maj"),
+                                    jo.getLong("intervenant_id"),
+                                    jo.getString("activite_code").charAt(0),
+                                    jo.getString("machine_code"),
+                                    jo.getString("cause_defaut_code"),
+                                    jo.getString("cause_objet_code"),
+                                    jo.getString("symptome_defaut_code"),
+                                    jo.getString("symptome_objet_code"),
+                                    jo.getString("type_machine")));
                         }
                         jo = new JSONObject(s);
                         wsRetour = jo.getBoolean("success");
@@ -233,7 +248,7 @@ public class DaoIntervention {
         ws.execute("controller=machine&action=getAll");
     }
 
-    public void insertUneInterventions(String hDeb, String hFin, String comm, int tArr, Boolean org, Boolean per, String acti, String mach, String cd, String co, String sd, String so,
+    public void insertUneInterventions(String hDeb, String hFin, String comm, String tArr, Boolean org, Boolean per, String acti, String mach, String cd, String co, String sd, String so,
                                        ArrayList<UtilisateurIntervenue> interLvList, Delegate delegate) throws IOException, JSONException {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
@@ -253,7 +268,7 @@ public class DaoIntervention {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        Intervention inter = new Intervention(1, hDeb, hFin, comm, tArr, org, per, "now", "now", MainActivity.logU.getId(), acti.charAt(0), mach, cd, co, sd, so);
+        Intervention inter = new Intervention(1, hDeb, hFin, comm, tArr, org, per, "now", "now", MainActivity.logU.getId(), acti.charAt(0), mach, cd, co, sd, so,"");
 
         JSONObject jSendI = new JSONObject(mapper.writeValueAsString(inter));
         Log.d("jSendI.toString()", "insertUneInterventions: " + jSendI);
@@ -278,7 +293,19 @@ public class DaoIntervention {
                                 jo.getString("dh_debut"),
                                 jo.getString("dh_fin"),
                                 jo.getString("commentaire"),
-                                jo.getInt("temp_arret"), jo.getBoolean("changement_organe"), jo.getBoolean("perte"), jo.getString("dh_creation"), jo.getString("dh_derniere_maj"), jo.getLong("intervenant_id"), jo.getString("activite_code").charAt(0), jo.getString("machine_code"), jo.getString("cause_defaut_code"), jo.getString("cause_objet_code"), jo.getString("symptome_defaut_code"), jo.getString("symptome_objet_code"));
+                                jo.getString("temp_arret"),
+                                jo.getBoolean("changement_organe"),
+                                jo.getBoolean("perte"),
+                                jo.getString("dh_creation"),
+                                jo.getString("dh_derniere_maj"),
+                                jo.getLong("intervenant_id"),
+                                jo.getString("activite_code").charAt(0),
+                                jo.getString("machine_code"),
+                                jo.getString("cause_defaut_code"),
+                                jo.getString("cause_objet_code"),
+                                jo.getString("symptome_defaut_code"),
+                                jo.getString("symptome_objet_code"),
+                                jo.getString("type_machine"));
 
 
                         jo = new JSONObject(s);

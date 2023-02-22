@@ -120,8 +120,8 @@ public class AddInterventionActivity extends AppCompatActivity {
             }
         });
         //renome BTN Ajout avec l'inter selectionné et le temp
-        TextView btnAdd = (TextView)findViewById(R.id.addInterBtnAjouterIntervenent);
-        Spinner interAdd = ((Spinner)findViewById(R.id.addInterSpinnerLesInter));
+        TextView btnAdd = (TextView) findViewById(R.id.addInterBtnAjouterIntervenent);
+        Spinner interAdd = ((Spinner) findViewById(R.id.addInterSpinnerLesInter));
         tempInter = (Spinner) findViewById(R.id.addInterSpinnerInterTime);
    /*     interAdd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -191,15 +191,12 @@ public class AddInterventionActivity extends AppCompatActivity {
             Boolean per = ((CheckBox) findViewById(R.id.addInterCbPerte)).isChecked();
             String hDeb = ((TextView) findViewById(R.id.addInterBtnHeureDebut)).getText().toString();
             String hFin = null;
-            int tempAr = 0;
+            String tempAr = (String) tempP.getSelectedItem();
             boolean isOk = true;
             try {
                 // j'execute tout ce qui peux lever une exception enssemble pour arreter l'action en cours en une seul fois (action: post intervention)
                 if (fin) {
                     hFin = ((TextView) findViewById(R.id.addInterBtnHeureFin)).getText().toString();
-                }
-                if (arr) {
-                    tempAr = Integer.parseInt((String) tempP.getSelectedItem());
                 }
                 if (acti == "" || so == "" || sd == "" || co == "" || cd == "" || mach == "") {
                     isOk = false;
@@ -234,24 +231,8 @@ public class AddInterventionActivity extends AppCompatActivity {
 
 
     private void innit() {
-        if (!isInnit) {
-            DaoIntervention.getInstance().getAscod(new Delegate() {
-                @Override
-                public void WSRequestIsDone(Object result) {
-                    adaActivite.notifyDataSetChanged();
-                    adaCD.notifyDataSetChanged();
-                    adaCO.notifyDataSetChanged();
-                    adaSD.notifyDataSetChanged();
-                    adaSO.notifyDataSetChanged();
-                }
-            });
-        }
-        DaoIntervention.getInstance().getMachines(new Delegate() {
-            @Override
-            public void WSRequestIsDone(Object result) {
-                adaMachine.notifyDataSetChanged();
-            }
-        });
+
+
         DaoUtilisateur.getInstance().getLesIntervenantsBBD(new Delegate() {
             @Override
             public void WSRequestIsDone(Object result) {
@@ -277,6 +258,25 @@ public class AddInterventionActivity extends AppCompatActivity {
         ((Spinner) findViewById(R.id.addInterSpinCO)).setAdapter(adaCO);
         ((Spinner) findViewById(R.id.addInterSpinCD)).setAdapter(adaCD);
         ((Spinner) findViewById(R.id.addInterSpinMachine)).setAdapter(adaMachine);
+
+
+        if (!isInnit) {
+            isInnit = true;
+            adaActivite.addAll(DaoIntervention.getInstance().getLesActivites());
+            adaCD.addAll(DaoIntervention.getInstance().getLesCD());
+            adaCO.addAll(DaoIntervention.getInstance().getLesCO());
+            adaSD.addAll(DaoIntervention.getInstance().getLesSD());
+            adaSO.addAll(DaoIntervention.getInstance().getLesSO());
+            adaMachine.addAll(DaoIntervention.getInstance().getLesMachines());
+        }
+
+
+        adaActivite.notifyDataSetChanged();
+        adaCD.notifyDataSetChanged();
+        adaCO.notifyDataSetChanged();
+        adaSD.notifyDataSetChanged();
+        adaSO.notifyDataSetChanged();
+        adaMachine.notifyDataSetChanged();
         isInnit = true;
     }
 

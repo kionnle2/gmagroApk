@@ -26,14 +26,25 @@ public class InterventionsActivity extends AppCompatActivity {
 
         adaInter = new CustomAdapter(this, DaoIntervention.getInstance().getLesInterventionsLOC());
         ((ListView) findViewById(R.id.interListView)).setAdapter(adaInter);
-
+// fill list inter
         DaoIntervention.getInstance().getLesInterventionsBDD(new Delegate() {
             @Override
             public void WSRequestIsDone(Object result) {
                 adaInter.notifyDataSetChanged();
             }
         });
-
+        //fill local dao machine
+        DaoIntervention.getInstance().getMachines(new Delegate() {
+            @Override
+            public void WSRequestIsDone(Object result) {
+            }
+        });
+//fill local dao ascod list
+        DaoIntervention.getInstance().getAscod(new Delegate() {
+            @Override
+            public void WSRequestIsDone(Object result) {
+            }
+        });
 
         ((Button) findViewById(R.id.interBtnDeco)).setOnClickListener(v -> deconnexion());
         ((Button) findViewById(R.id.interBtnAdd)).setOnClickListener(v ->
@@ -70,7 +81,7 @@ public class InterventionsActivity extends AppCompatActivity {
         });
     }
     /* TODO add new inter dans liste intervention au lieu de prendre dans la bdd
-    *   et donc peut-etre retirer le startActivity for result*/
+     *   et donc peut-etre retirer le startActivity for result*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
