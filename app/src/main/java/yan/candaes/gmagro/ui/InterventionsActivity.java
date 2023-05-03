@@ -18,6 +18,7 @@ import yan.candaes.gmagro.tools.CustomAdapter;
 public class InterventionsActivity extends AppCompatActivity {
     CustomAdapter adaInter;
     final int AJOUT_FAIT = 2;
+    final int UP_FAIT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,8 @@ public class InterventionsActivity extends AppCompatActivity {
         ((ListView) findViewById(R.id.interListView)).setOnItemClickListener((parent, view, position, id) ->
                 {
                     Intent i = new Intent(this, ContinueInterventionActivity.class);
-                    i.putExtra("id", adaInter.getItem(position));
-                    startActivity(i);
+                    i.putExtra("inter", adaInter.getItem(position));
+                    startActivityForResult( i, UP_FAIT);
                 }
         );
 
@@ -80,8 +81,7 @@ public class InterventionsActivity extends AppCompatActivity {
             }
         });
     }
-    /* TODO add new inter dans liste intervention au lieu de prendre dans la bdd
-     *   et donc peut-etre retirer le startActivity for result*/
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

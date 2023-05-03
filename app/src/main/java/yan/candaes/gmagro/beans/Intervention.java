@@ -50,13 +50,6 @@ public class Intervention implements Serializable {
         return dh_debut;
     }
 
-    public String getDh_fin() {
-        return dh_fin;
-    }
-
-    public String getType_machine() {
-        return type_machine;
-    }
 
     public String getCommentaire() {
         return commentaire;
@@ -74,21 +67,10 @@ public class Intervention implements Serializable {
         return perte;
     }
 
-    public String getDh_creation() {
-        return dh_creation;
-    }
-
     public String getDh_derniere_maj() {
         return dh_derniere_maj;
     }
 
-    public long getIntervenant_id() {
-        return intervenant_id;
-    }
-
-    public char getActivite_code() {
-        return activite_code;
-    }
 
     public String getMachine_code() {
         return machine_code;
@@ -109,11 +91,6 @@ public class Intervention implements Serializable {
     public String getSymptome_objet_code() {
         return symptome_objet_code;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Intervention "+id;
-//    }
 
 
     @Override

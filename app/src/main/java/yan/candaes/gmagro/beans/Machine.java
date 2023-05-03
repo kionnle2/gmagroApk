@@ -4,17 +4,20 @@ import java.io.Serializable;
 
 public class Machine implements Serializable {
     private String code;
-    private String date_fab;
     private String numero_serie;
-    private String uai;
     private String type_machine_code;
+    private String photo;
 
-    public Machine(String code, String date_fab, String numero_serie, String uai, String type_machine_code) {
+
+    public Machine(String code, String numero_serie, String type_machine_code,String photo) {
         this.code = code;
-        this.date_fab = date_fab;
         this.numero_serie = numero_serie;
-        this.uai = uai;
         this.type_machine_code = type_machine_code;
+        this.photo=photo;
+    }
+
+    public String getNumero_serie() {
+        return numero_serie;
     }
 
     public String getCode() {
@@ -23,6 +26,10 @@ public class Machine implements Serializable {
 
     public String getType_machine_code() {
         return type_machine_code;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 
     @Override

@@ -14,185 +14,178 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-    <Button
-        android:id="@+id/continueInterventionBtnDeco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Déconnexion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/continueInterventionTVCo"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Vous êtes connecté en tant que"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/continueInterventionBtnDeco"
+                android:layout_width="142dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Déconnexion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="124dp"
-        android:layout_height="22dp"
-        android:text="Temp en minutes :"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ContinueInterventionSpinInter"
-        app:layout_constraintTop_toTopOf="@+id/ContinueInterventionSpinInter" />
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="Temp en h:m"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ContinueInterventionSpinInter"
+                app:layout_constraintTop_toTopOf="@+id/ContinueInterventionSpinInter" />
 
-    <TextView
-        android:id="@+id/continueInterventionTVSO"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginEnd="36dp"
-        android:text="so"
-        app:layout_constraintEnd_toStartOf="@+id/continueInterventionTVCO"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            <TextView
+                android:id="@+id/continueInterventionTVSO"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:text="so"
+                app:layout_constraintStart_toStartOf="@+id/continueInterventionTVCommentaire"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterTVNomInter" />
 
-    <Button
-        android:id="@+id/continueInterventionUpdateIntervention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Mèttre à jour l'intervention"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVNewCommentaire" />
+            <Button
+                android:id="@+id/continueInterventionUpdateIntervention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Mèttre à jour l'intervention"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVNewCommentaire" />
 
-    <Button
-        android:id="@+id/ContinueInterventionAddIntervenantBtnListIntervention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ajouter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ContinueInterventionSpinInter"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionSpinnerTimeByInter" />
+            <Button
+                android:id="@+id/ContinueInterventionAddIntervenantBtnListIntervention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ajouter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ContinueInterventionSpinInter"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionSpinnerTimeByInter" />
 
-    <TextView
-        android:id="@+id/continueInterTVNomInter"
-        android:layout_width="291dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="16dp"
-        android:text="nom inter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCo" />
+            <TextView
+                android:id="@+id/continueInterTVNomInter"
+                android:layout_width="225dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="16dp"
+                android:text="nom inter"
+                app:layout_constraintEnd_toStartOf="@+id/continueInterventionBtnDeco"
+                app:layout_constraintHorizontal_bias="0.571"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/continueInterventionTVCD"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="cd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCO" />
+            <TextView
+                android:id="@+id/continueInterventionTVCD"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="cd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCO" />
 
-    <TextView
-        android:id="@+id/continueInterventionTVSD"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="36dp"
-        android:text="sd"
-        app:layout_constraintEnd_toStartOf="@+id/continueInterventionTVCD"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVSO" />
+            <TextView
+                android:id="@+id/continueInterventionTVSD"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
+                android:text="sd"
+                app:layout_constraintEnd_toStartOf="@+id/continueInterventionTVCD"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/continueInterventionTVCommentaire"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVSO" />
 
-    <TextView
-        android:id="@+id/continueInterventionTVCO"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="16dp"
-        android:text="co"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            <TextView
+                android:id="@+id/continueInterventionTVCO"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="co"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterTVNomInter" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="372dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="12dp"
-        android:text="liste des intervenants et temps passé"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCommentaire" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="372dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="12dp"
+                android:text="liste des intervenants et temps passé :"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVCommentaire" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterTVNomInter"
-        tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/continueInterventionImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView9"
+                app:layout_constraintEnd_toStartOf="@+id/continueInterventionTVCommentaire"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterTVNomInter"
+                app:layout_constraintVertical_bias="0.0"
+                tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/continueInterventionTVCommentaire"
-        android:layout_width="237dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVSD" />
+            <TextView
+                android:id="@+id/continueInterventionTVCommentaire"
+                android:layout_width="237dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionTVSD" />
 
-    <CheckBox
-        android:id="@+id/continueInterventionCBInterventionTerminee"
-        android:layout_width="199dp"
-        android:layout_height="50dp"
-        android:text="Intervention terminée"
-        app:layout_constraintStart_toStartOf="@+id/continueInterventoinCBMachineArretee"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventoinCBMachineArretee" />
+            <CheckBox
+                android:id="@+id/continueInterventionCBInterventionTerminee"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:text="Intervention terminée"
+                app:layout_constraintStart_toStartOf="@+id/continueInterventoinCBMachineArretee"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventoinCBMachineArretee" />
 
-    <CheckBox
-        android:id="@+id/continueInterventoinCBMachineArretee"
-        android:layout_width="199dp"
-        android:layout_height="50dp"
-        android:text="Machine arretée"
-        app:layout_constraintStart_toStartOf="@+id/continueInterventionCBChangementOrgane"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBChangementOrgane" />
+            <CheckBox
+                android:id="@+id/continueInterventoinCBMachineArretee"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:text="Machine arretée"
+                app:layout_constraintStart_toStartOf="@+id/continueInterventionCBChangementOrgane"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBChangementOrgane" />
 
-    <CheckBox
-        android:id="@+id/continueInterventionCBPerte"
-        android:layout_width="199dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:text="Perte"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ContinueInterventionSpinInter" />
+            <CheckBox
+                android:id="@+id/continueInterventionCBPerte"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:text="Perte"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ContinueInterventionSpinInter" />
 
-    <CheckBox
-        android:id="@+id/continueInterventionCBChangementOrgane"
-        android:layout_width="199dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="2dp"
-        android:text="Changement organe"
-        app:layout_constraintStart_toStartOf="@+id/continueInterventionCBPerte"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBPerte" />
+            <CheckBox
+                android:id="@+id/continueInterventionCBChangementOrgane"
+                android:layout_width="199dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:text="Changement organe"
+                app:layout_constraintStart_toStartOf="@+id/continueInterventionCBPerte"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBPerte" />
 
-    <EditText
-        android:id="@+id/continueInterventionTVNewCommentaire"
-        android:layout_width="276dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Commentaire"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBInterventionTerminee" />
+            <EditText
+                android:id="@+id/continueInterventionTVNewCommentaire"
+                android:layout_width="276dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Commentaire"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/continueInterventionCBInterventionTerminee" />
 
             <Spinner
                 android:id="@+id/ContinueInterventionSpinInter"
@@ -204,8 +197,8 @@
 
             <ListView
                 android:id="@+id/listViewCustomEditInter"
-                android:layout_width="409dp"
-                android:layout_height="98dp"
+                android:layout_width="410dp"
+                android:layout_height="107dp"
                 android:layout_marginTop="16dp"
                 android:nestedScrollingEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -213,37 +206,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <Button
-        android:id="@+id/continueInterventionBtnInterFin"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Heure Fin"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/continueInterventionCBInterventionTerminee"
-        app:layout_constraintEnd_toEndOf="@+id/continueInterventionTVTempArret"
-        app:layout_constraintTop_toTopOf="@+id/continueInterventionCBInterventionTerminee"
-        app:layout_constraintVertical_bias="0.0" />
+            <Button
+                android:id="@+id/continueInterventionBtnInterFin"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:text="Heure Fin"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/continueInterventionCBInterventionTerminee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/continueInterventionCBInterventionTerminee"
+                app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/continueInterventionTVTempArret"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="ajouter temp"
-        android:inputType="number"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/continueInterventoinCBMachineArretee"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/continueInterventoinCBMachineArretee" />
+            <Spinner
+                android:id="@+id/continueInterventionSpinnerTimeByInter"
+                android:layout_width="115dp"
+                android:layout_height="38dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ContinueInterventionSpinInter"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <Spinner
-        android:id="@+id/continueInterventionSpinnerTimeByInter"
-        android:layout_width="115dp"
-        android:layout_height="38dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ContinueInterventionSpinInter"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            <Spinner
+                android:id="@+id/continueInterventionSpinnerTempArret"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/continueInterventionCBInterventionTerminee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/continueInterventoinCBMachineArretee"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

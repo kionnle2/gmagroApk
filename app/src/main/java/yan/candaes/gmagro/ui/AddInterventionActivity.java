@@ -34,7 +34,6 @@ import yan.candaes.gmagro.tools.CustomAdapterAddInter;
 import yan.candaes.gmagro.tools.DateAndTimePicker;
 
 public class AddInterventionActivity extends AppCompatActivity {
-    static Boolean isInnit = false;
     ArrayAdapter adaActivite;
     ArrayAdapter adaSO;
     ArrayAdapter adaSD;
@@ -78,9 +77,9 @@ public class AddInterventionActivity extends AppCompatActivity {
         // innit recupere les listes acsod et intervenants et atache les adapteurs
         innit();
 
-//deconnexion
+    //deconnexion
         findViewById(R.id.addInterBtnDeco).setOnClickListener(v -> deconnexion());
-//spinner temp machine arret
+    //spinner temp machine arret
         tempP = (Spinner) findViewById(R.id.addInterSpinnerTempArret);
         ArrayList<String> arraySpinner = new ArrayList<>();
         int minute = 0;
@@ -123,24 +122,7 @@ public class AddInterventionActivity extends AppCompatActivity {
         TextView btnAdd = (TextView) findViewById(R.id.addInterBtnAjouterIntervenent);
         Spinner interAdd = ((Spinner) findViewById(R.id.addInterSpinnerLesInter));
         tempInter = (Spinner) findViewById(R.id.addInterSpinnerInterTime);
-   /*     interAdd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                btnAdd.setText("Ajouter: "+interAdd.getSelectedItem().toString()+ " "+interAdd.getSelectedItem().toString());
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        tempInter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                btnAdd.setText("Ajouter: "+interAdd.getSelectedItem().toString()+ " "+interAdd.getSelectedItem().toString());
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
+
         //ajout d'intervenant
 
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -192,24 +174,32 @@ public class AddInterventionActivity extends AppCompatActivity {
             String hDeb = ((TextView) findViewById(R.id.addInterBtnHeureDebut)).getText().toString();
             String hFin = null;
             String tempAr = (String) tempP.getSelectedItem();
-            boolean isOk = true;
             try {
                 // j'execute tout ce qui peux lever une exception enssemble pour arreter l'action en cours en une seul fois (action: post intervention)
                 if (fin) {
                     hFin = ((TextView) findViewById(R.id.addInterBtnHeureFin)).getText().toString();
                 }
-                if (acti == "" || so == "" || sd == "" || co == "" || cd == "" || mach == "") {
-                    isOk = false;
-                }
-                DaoIntervention.getInstance().insertUneInterventions(hDeb, hFin, comm, tempAr, org, per, acti, mach, cd, co, sd, so, interLvList,
 
-                        new Delegate() {
-                            @Override
-                            public void WSRequestIsDone(Object result) {
-                                Toast.makeText(getApplicationContext(), "Ajout Réussie", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                finish();
+                Toast.makeText(this, "mach:"+mach, Toast.LENGTH_SHORT).show();
+                if (acti != "" && so != "" && sd != "" && co != "" && cd != "" && mach != "les Machines") {
+
+
+                    DaoIntervention.getInstance().insertUneInterventions(hDeb, hFin, comm, tempAr, org, per, acti, mach, cd, co, sd, so, interLvList,
+
+                            new Delegate() {
+                                @Override
+                                public void WSRequestIsDone(Object result) {
+                                    if ((boolean) result){
+                                        Toast.makeText(getApplicationContext(), "Ajout Réussie", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "échec de l'ajout, vérifier que chaque donnée soit entrée !", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
                 Log.e("TAGTAG", "onCreate: JsonProcessingException ");
@@ -222,7 +212,7 @@ public class AddInterventionActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("TAGTAG", "onCreate: Exception ");
-                Toast.makeText(this, "veiller à bien entrer un nombre dans le temp d'arret", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "échec de l'ajout, vérifier que chaque donnée soit entrée !", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -259,34 +249,14 @@ public class AddInterventionActivity extends AppCompatActivity {
         ((Spinner) findViewById(R.id.addInterSpinCD)).setAdapter(adaCD);
         ((Spinner) findViewById(R.id.addInterSpinMachine)).setAdapter(adaMachine);
 
-
-        if (!isInnit) {
-            isInnit = true;
-            adaActivite.addAll(DaoIntervention.getInstance().getLesActivites());
-            adaCD.addAll(DaoIntervention.getInstance().getLesCD());
-            adaCO.addAll(DaoIntervention.getInstance().getLesCO());
-            adaSD.addAll(DaoIntervention.getInstance().getLesSD());
-            adaSO.addAll(DaoIntervention.getInstance().getLesSO());
-            adaMachine.addAll(DaoIntervention.getInstance().getLesMachines());
-        }
-
-
         adaActivite.notifyDataSetChanged();
         adaCD.notifyDataSetChanged();
         adaCO.notifyDataSetChanged();
         adaSD.notifyDataSetChanged();
         adaSO.notifyDataSetChanged();
         adaMachine.notifyDataSetChanged();
-        isInnit = true;
     }
 
-    /*
-        TODO spinner Machine arret
-        TODO spinner temp inter
-        TODO btn ajout rename info inter
-        TODO btn annuler
-
- */
 
     private void deconnexion() {
         DaoIntervention.getInstance().deco(new Delegate() {

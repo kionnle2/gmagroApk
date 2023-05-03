@@ -82,7 +82,7 @@ public class WSConnexionHTTPS extends AsyncTask<String, Integer, String> {
         if (strings.length == 3) {                      //[1] json Inter [2] list intervenentIntervention
             body = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("newInter", strings[1])
+                    .addFormDataPart("inter", strings[1])
                     .addFormDataPart("lisII", strings[2])
                     .build();
              request = new Request.Builder()

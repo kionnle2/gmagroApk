@@ -19,8 +19,3 @@ public class Ascod {
     }
 }
 
-/* TODO passable, get scod  with union
-(select code lib "co"
-uso=ion
-select code lib "cd" ...)
- */

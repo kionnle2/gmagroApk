@@ -11,7 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,7 @@ import yan.candaes.gmagro.beans.Machine;
 import yan.candaes.gmagro.beans.Utilisateur;
 import yan.candaes.gmagro.beans.UtilisateurIntervenue;
 import yan.candaes.gmagro.net.WSConnexionHTTPS;
+import yan.candaes.gmagro.tools.Tools;
 import yan.candaes.gmagro.ui.MainActivity;
 
 public class DaoIntervention {
@@ -35,7 +38,6 @@ public class DaoIntervention {
     private final List<Ascod> lesSD;
     private final List<Machine> lesMachines;
 
-    // private final ObjectMapper mapper = new ObjectMapper();
 
     public DaoIntervention() {
         lesInterventions = new ArrayList<>();
@@ -99,20 +101,17 @@ public class DaoIntervention {
                             //soirees.add(mapper.readValue((DataInput) ja.getJSONObject(i), Soiree.class));
                             jo = ja.getJSONObject(i);
                             boolean changeOrgane = false;
-                            try {
-                                changeOrgane = jo.getInt("changement_organe") == 1;
-                            } catch (JSONException e) {
-                            }
                             boolean perte = false;
-                            try {
-                                perte = jo.getInt("perte") == 1;
-                            } catch (JSONException e) {
-                            }
+
+                            changeOrgane = jo.getString("changement_organe").toString().equals("1");
+
+                            perte = jo.getString("perte").equals("1");
+                            Log.i("TAGTAG", "onPostExecute: " + perte + " " + jo.getString("perte"));
                             lesInterventions.add(new Intervention(jo.getInt("id"),
                                     jo.getString("dh_debut"),
                                     jo.getString("dh_fin"),
                                     jo.getString("commentaire"),
-                                    jo.getString("temp_arret"),
+                                    jo.getString("temps_arret"),
                                     changeOrgane,
                                     perte,
                                     jo.getString("dh_creation"),
@@ -229,11 +228,11 @@ public class DaoIntervention {
                         JSONArray ja = jo.getJSONArray("response");
 
                         lesMachines.clear();
-                        lesMachines.add(new Machine("les Machines","","","",""));
+                        lesMachines.add(new Machine("les Machines","","",""));
                         //  lesMachines.add( mapper.readValue(ja,);
                         for (int i = 0; i < ja.length(); i++) {
                             jo = ja.getJSONObject(i);
-                            lesMachines.add(new Machine(jo.getString("code"), jo.getString("date_fab"), jo.getString("numero_serie"), jo.getString("uai"), jo.getString("type_machine_code")));
+                            lesMachines.add(new Machine(jo.getString("code"), jo.getString("numero_serie"), jo.getString("type_machine_code"), jo.getString("photo")));
                         }
                         jo = new JSONObject(s);
                         wsRetour = jo.getBoolean("success");
@@ -249,7 +248,7 @@ public class DaoIntervention {
     }
 
     public void insertUneInterventions(String hDeb, String hFin, String comm, String tArr, Boolean org, Boolean per, String acti, String mach, String cd, String co, String sd, String so,
-                                       ArrayList<UtilisateurIntervenue> interLvList, Delegate delegate) throws IOException, JSONException {
+                                       ArrayList<UtilisateurIntervenue> interLvList, Delegate delegate) throws IOException, JSONException, ParseException {
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
             public void onPostExecute(String s) {
@@ -266,65 +265,39 @@ public class DaoIntervention {
             }
         };
 
+        Date convDhDebut = Tools.sdfFR.parse(hDeb);
+        hDeb = Tools.sdfEN.format(convDhDebut);
+        if (hFin!=null) {
+            Date convDhFin = Tools.sdfFR.parse(hFin);
+            hFin = Tools.sdfEN.format(convDhFin);
+        }
+
+        Map<String, Object> intervention = new HashMap<>();
+        intervention.put("dh_debut", hDeb);
+        intervention.put("dh_fin", hFin);
+        intervention.put("commentaire", comm);
+        intervention.put("temps_arret", tArr);
+        intervention.put("changement_organe", org);
+        intervention.put("perte", per);
+        intervention.put("intervenant_id", MainActivity.logU.getId());
+        intervention.put("activite_code", acti);
+        intervention.put("machine_code", mach);
+        intervention.put("cause_defaut_code", cd);
+        intervention.put("cause_objet_code", co);
+        intervention.put("symptome_defaut_code", sd);
+        intervention.put("symptome_objet_code", so);
+        Log.d("TAGTAGTAGTAGTAGTAG", "addUneInterventions: " + intervention);
+
         ObjectMapper mapper = new ObjectMapper();
+        JSONObject jSendI = new JSONObject(intervention);
+        Log.d("jSendI.toString()", "addUneInterventions: " + jSendI);
 
-        Intervention inter = new Intervention(1, hDeb, hFin, comm, tArr, org, per, "now", "now", MainActivity.logU.getId(), acti.charAt(0), mach, cd, co, sd, so,"");
-
-        JSONObject jSendI = new JSONObject(mapper.writeValueAsString(inter));
-        Log.d("jSendI.toString()", "insertUneInterventions: " + jSendI);
         JSONArray jSendII = new JSONArray(mapper.writeValueAsString(interLvList));
-
-
         ws.execute("controller=inter&action=add", jSendI.toString(), jSendII.toString());
     }
 
 
-    public void getInterventionsById(int id, Delegate delegate) {
-        WSConnexionHTTPS ws = new WSConnexionHTTPS() {
-            @Override
-            public void onPostExecute(String s) {
-                boolean wsRetour = false;
-                if (s != null) {
-                    try {
-
-                        JSONObject jo = new JSONObject(s);
-                        jo = jo.getJSONObject("response");
-                        new Intervention(jo.getInt("id"),
-                                jo.getString("dh_debut"),
-                                jo.getString("dh_fin"),
-                                jo.getString("commentaire"),
-                                jo.getString("temp_arret"),
-                                jo.getBoolean("changement_organe"),
-                                jo.getBoolean("perte"),
-                                jo.getString("dh_creation"),
-                                jo.getString("dh_derniere_maj"),
-                                jo.getLong("intervenant_id"),
-                                jo.getString("activite_code").charAt(0),
-                                jo.getString("machine_code"),
-                                jo.getString("cause_defaut_code"),
-                                jo.getString("cause_objet_code"),
-                                jo.getString("symptome_defaut_code"),
-                                jo.getString("symptome_objet_code"),
-                                jo.getString("type_machine"));
-
-
-                        jo = new JSONObject(s);
-                        wsRetour = jo.getBoolean("success");
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-                delegate.WSRequestIsDone(wsRetour);
-
-            }
-        };
-        ws.execute("controller=inter&action=getById");
-    }
-
-
-    public void updateUneInterventions(int id, String commentaire, Boolean boolFin, Boolean boolArr, Boolean boolOrg, Boolean boolPer, String hFin, int tempAr, ArrayList<UtilisateurIntervenue> interInterList, Delegate delegate) throws JsonProcessingException, JSONException {
+    public void updateUneInterventions(int id, String commentaire, Boolean boolOrg, Boolean boolPer, String hFin, String ntempAr,String atempAr, ArrayList<UtilisateurIntervenue> interInterList, Delegate delegate) throws JsonProcessingException, JSONException, ParseException {
 
         WSConnexionHTTPS ws = new WSConnexionHTTPS() {
             @Override
@@ -341,19 +314,26 @@ public class DaoIntervention {
                 delegate.WSRequestIsDone(wsRetour);
             }
         };
+        if (hFin!=null) {
+            Date convDhDebut = Tools.sdfFR.parse(hFin);
+            hFin = Tools.sdfEN.format(convDhDebut);
+        }
+
         Map<String, Object> intervention = new HashMap<>();
         intervention.put("id", id);
         intervention.put("commentaire", commentaire);
-        intervention.put("boolFin", boolFin);
-        intervention.put("boolArr", boolArr);
-        intervention.put("boolOrg", boolOrg);
-        intervention.put("boolPer", boolPer);
-        intervention.put("hFin", hFin);
-        intervention.put("tempAr", tempAr);
+        intervention.put("changement_organe", boolOrg);
+        intervention.put("perte", boolPer);
+        intervention.put("dh_fin", hFin);
+        intervention.put("nTemps_arret", ntempAr);
+        intervention.put("aTemps_arret", atempAr);
+        Log.d("TAGTAGTAGTAGTAGTAG", "updateUneInterventions: " + intervention);
 
         ObjectMapper mapper = new ObjectMapper();
         JSONObject jSendI = new JSONObject(intervention);
         Log.d("jSendI.toString()", "updateUneInterventions: " + jSendI);
+
+
         JSONArray jSendII = new JSONArray(mapper.writeValueAsString(interInterList));
         Log.d("jSendII.toString()", "updateUneInterventions: " + jSendII);
 

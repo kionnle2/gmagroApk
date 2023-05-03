@@ -10,6 +10,7 @@ import android.widget.TimePicker;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Tools {
@@ -40,8 +41,20 @@ public class Tools {
         return "";
     }
 
+    public static ArrayList<String> fillTimeList(ArrayList<String> arraySpinner, boolean withZero) {
+        int minute = 0;
+        int heure = 0;
+        if(withZero)arraySpinner.add("0:0");
+        for (int i = 0; i < 32; i++) {
+            minute += 15;
+            if (minute == 60) {
+                minute = 0;
+                heure++;
+            }
 
-
-
+            arraySpinner.add(heure + ":" + minute);
+        }
+    return arraySpinner;
+    }
 
 }
